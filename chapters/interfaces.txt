@@ -590,7 +590,7 @@ In this case the variable must: be typed as code:OpTypeStruct and cannot: be
 aggregated into arrays of that type.
 Further, the code:Offset decoration for any member of such a variable must:
 not cause the space required for that variable to extend outside the range
-[eq]#[0,pname:maxInlineUniformBlockSize)#.
+[eq]#[0,maxInlineUniformBlockSize)#.
 endif::VK_EXT_inline_uniform_block[]
 
 Variables identified with a storage class of code:UniformConstant and a
@@ -2404,6 +2404,7 @@ generates a primitive.
 +
 All index values must: be in the range [eq]#[0, N-1]#, where [eq]#N# is the
 value specified by the code:OutputVertices execution mode.
+Out-of-bounds index values result in undefined behavior.
 +
 The code:PrimitiveIndicesNV decoration must: only be used in mesh shaders.
 +

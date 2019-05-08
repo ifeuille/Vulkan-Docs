@@ -116,10 +116,11 @@ For matrix types, outputs are written as an array of column vectors.
 
 If any component of an output with an assigned transform feedback offset was
 not written to by its shader, the value recorded for that component is
-undefined:.
-All components of an output variable must: be written at an offset aligned
-to the size of the component.
-The size of each component of an output variable must: be at least 32-bits.
+undefined.
+The results of writing an output variable to a transform feedback buffer are
+undefined if any component of that variable would be written at an offset
+not aligned to the size of the component, or the component is less than 4
+bytes in size.
 When capturing a vertex, any portion of the reserved storage not associated
 with an output variable with an assigned transform feedback offset will be
 unmodified.
@@ -161,7 +162,7 @@ feedback buffer is ignored.
 To bind transform feedback buffers to a command buffer for use in subsequent
 draw commands, call:
 
-include::{generated}/api/protos/vkCmdBindTransformFeedbackBuffersEXT.txt[]
+include::../api/protos/vkCmdBindTransformFeedbackBuffersEXT.txt[]
 
   * pname:commandBuffer is the command buffer into which the command is
     recorded.
@@ -225,7 +226,7 @@ by pname:pOffsets[i] from the start of the buffer pname:pBuffers[i].
     fname:vkCmdBindTransformFeedbackBuffersEXT command is recorded
 ****
 
-include::{generated}/validity/protos/vkCmdBindTransformFeedbackBuffersEXT.txt[]
+include::../validity/protos/vkCmdBindTransformFeedbackBuffersEXT.txt[]
 --
 
 
@@ -235,7 +236,7 @@ include::{generated}/validity/protos/vkCmdBindTransformFeedbackBuffersEXT.txt[]
 Transform feedback for specific transform feedback buffers is made active by
 calling:
 
-include::{generated}/api/protos/vkCmdBeginTransformFeedbackEXT.txt[]
+include::../api/protos/vkCmdBeginTransformFeedbackEXT.txt[]
 
   * pname:commandBuffer is the command buffer into which the command is
     recorded.
@@ -310,7 +311,7 @@ ifdef::VK_VERSION_1_1,VK_KHR_multiview[]
 endif::VK_VERSION_1_1,VK_KHR_multiview[]
 ****
 
-include::{generated}/validity/protos/vkCmdBeginTransformFeedbackEXT.txt[]
+include::../validity/protos/vkCmdBeginTransformFeedbackEXT.txt[]
 --
 
 [open,refpage='vkCmdEndTransformFeedbackEXT',desc='Make transform feedback inactive in the command buffer',type='protos']
@@ -319,7 +320,7 @@ include::{generated}/validity/protos/vkCmdBeginTransformFeedbackEXT.txt[]
 Transform feedback for specific transform feedback buffers is made inactive
 by calling:
 
-include::{generated}/api/protos/vkCmdEndTransformFeedbackEXT.txt[]
+include::../api/protos/vkCmdEndTransformFeedbackEXT.txt[]
 
   * pname:commandBuffer is the command buffer into which the command is
     recorded.
@@ -379,7 +380,7 @@ include::{generated}/api/protos/vkCmdEndTransformFeedbackEXT.txt[]
     ename:VK_BUFFER_USAGE_TRANSFORM_FEEDBACK_COUNTER_BUFFER_BIT_EXT
 ****
 
-include::{generated}/validity/protos/vkCmdEndTransformFeedbackEXT.txt[]
+include::../validity/protos/vkCmdEndTransformFeedbackEXT.txt[]
 --
 
 endif::VK_EXT_transform_feedback[]
@@ -396,7 +397,7 @@ applied to its clip coordinates.
 The swizzle that is applied depends on the viewport index, and is controlled
 by the sname:VkPipelineViewportSwizzleStateCreateInfoNV pipeline state:
 
-include::{generated}/api/structs/VkPipelineViewportSwizzleStateCreateInfoNV.txt[]
+include::../api/structs/VkPipelineViewportSwizzleStateCreateInfoNV.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -413,12 +414,12 @@ include::{generated}/api/structs/VkPipelineViewportSwizzleStateCreateInfoNV.txt[
     sname:VkPipelineViewportStateCreateInfo
 ****
 
-include::{generated}/validity/structs/VkPipelineViewportSwizzleStateCreateInfoNV.txt[]
+include::../validity/structs/VkPipelineViewportSwizzleStateCreateInfoNV.txt[]
 --
 
 [open,refpage='VkPipelineViewportSwizzleStateCreateFlagsNV',desc='Reserved for future use',type='flags']
 --
-include::{generated}/api/flags/VkPipelineViewportSwizzleStateCreateFlagsNV.txt[]
+include::../api/flags/VkPipelineViewportSwizzleStateCreateFlagsNV.txt[]
 
 tname:VkPipelineViewportSwizzleStateCreateFlagsNV is a bitmask type for
 setting a mask, but is currently reserved for future use.
@@ -468,7 +469,7 @@ sname:VkViewportSwizzleNV to set the viewport swizzle parameters.
 
 The sname:VkViewportSwizzleNV structure is defined as:
 
-include::{generated}/api/structs/VkViewportSwizzleNV.txt[]
+include::../api/structs/VkViewportSwizzleNV.txt[]
 
   * pname:x is a elink:VkViewportCoordinateSwizzleNV value specifying the
     swizzle operation to apply to the x component of the primitive
@@ -479,7 +480,7 @@ include::{generated}/api/structs/VkViewportSwizzleNV.txt[]
   * pname:w is a elink:VkViewportCoordinateSwizzleNV value specifying the
     swizzle operation to apply to the w component of the primitive
 
-include::{generated}/validity/structs/VkViewportSwizzleNV.txt[]
+include::../validity/structs/VkViewportSwizzleNV.txt[]
 --
 
 [open,refpage='VkViewportCoordinateSwizzleNV',desc='Specify how a viewport coordinate is swizzled',type='enums']
@@ -489,7 +490,7 @@ Possible values of the slink:VkViewportSwizzleNV::pname:x, pname:y, pname:z,
 and pname:w members, specifying swizzling of the corresponding components of
 primitives, are:
 
-include::{generated}/api/enums/VkViewportCoordinateSwizzleNV.txt[]
+include::../api/enums/VkViewportCoordinateSwizzleNV.txt[]
 
 These values are described in detail in <<vertexpostproc-viewport-swizzle,
 Viewport Swizzle>>.
@@ -625,12 +626,12 @@ slink:VkPhysicalDevicePointClippingProperties::pname:pointClippingBehavior,
 specifying clipping behavior of a point primitive whose vertex lies outside
 the clip volume, are:
 
-include::{generated}/api/enums/VkPointClippingBehavior.txt[]
+include::../api/enums/VkPointClippingBehavior.txt[]
 
 ifdef::VK_KHR_maintenance2[]
 or the equivalent
 
-include::{generated}/api/enums/VkPointClippingBehaviorKHR.txt[]
+include::../api/enums/VkPointClippingBehaviorKHR.txt[]
 endif::VK_KHR_maintenance2[]
 
   * ename:VK_POINT_CLIPPING_BEHAVIOR_ALL_CLIP_PLANES specifies that the
@@ -811,7 +812,7 @@ structure used in pipeline creation.
 
 The sname:VkPipelineViewportStateCreateInfo structure is defined as:
 
-include::{generated}/api/structs/VkPipelineViewportStateCreateInfo.txt[]
+include::../api/structs/VkPipelineViewportStateCreateInfo.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -853,12 +854,12 @@ ifdef::VK_NV_clip_space_w_scaling[]
 endif::VK_NV_clip_space_w_scaling[]
 ****
 
-include::{generated}/validity/structs/VkPipelineViewportStateCreateInfo.txt[]
+include::../validity/structs/VkPipelineViewportStateCreateInfo.txt[]
 --
 
 [open,refpage='VkPipelineViewportStateCreateFlags',desc='Reserved for future use',type='flags']
 --
-include::{generated}/api/flags/VkPipelineViewportStateCreateFlags.txt[]
+include::../api/flags/VkPipelineViewportStateCreateFlags.txt[]
 
 tname:VkPipelineViewportStateCreateFlags is a bitmask type for setting a
 mask, but is currently reserved for future use.
@@ -939,7 +940,7 @@ If the pipeline state object was created with the
 ename:VK_DYNAMIC_STATE_VIEWPORT dynamic state enabled, the viewport
 transformation parameters are dynamically set and changed with the command:
 
-include::{generated}/api/protos/vkCmdSetViewport.txt[]
+include::../api/protos/vkCmdSetViewport.txt[]
 
   * pname:commandBuffer is the command buffer into which the command will be
     recorded.
@@ -973,7 +974,7 @@ replace the current state for the viewport index [eq]#pname:firstViewport
     enabled, pname:viewportCount must: be `1`
 ****
 
-include::{generated}/validity/protos/vkCmdSetViewport.txt[]
+include::../validity/protos/vkCmdSetViewport.txt[]
 --
 
 Both slink:VkPipelineViewportStateCreateInfo and flink:vkCmdSetViewport use
@@ -984,7 +985,7 @@ sname:VkViewport to set the viewport transformation parameters.
 
 The sname:VkViewport structure is defined as:
 
-include::{generated}/api/structs/VkViewport.txt[]
+include::../api/structs/VkViewport.txt[]
 
   * pname:x and pname:y are the viewport's upper left corner [eq]#(x,y)#.
   * pname:width and pname:height are the viewport's width and height,
@@ -1083,5 +1084,5 @@ ifndef::VK_EXT_depth_range_unrestricted[]
 endif::VK_EXT_depth_range_unrestricted[]
 ****
 
-include::{generated}/validity/structs/VkViewport.txt[]
+include::../validity/structs/VkViewport.txt[]
 --

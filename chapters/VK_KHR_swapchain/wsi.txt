@@ -11,7 +11,7 @@ A swapchain object (a.k.a.
 swapchain) provides the ability to present rendering results to a surface.
 Swapchain objects are represented by sname:VkSwapchainKHR handles:
 
-include::{generated}/api/handles/VkSwapchainKHR.txt[]
+include::../../api/handles/VkSwapchainKHR.txt[]
 
 A swapchain is an abstraction for an array of presentable images that are
 associated with a surface.
@@ -85,7 +85,7 @@ endif::VK_KHR_shared_presentable_image[]
 
 To create a swapchain, call:
 
-include::{generated}/api/protos/vkCreateSwapchainKHR.txt[]
+include::../../api/protos/vkCreateSwapchainKHR.txt[]
 
   * pname:device is the device to create the swapchain for.
   * pname:pCreateInfo is a pointer to an instance of the
@@ -97,42 +97,7 @@ include::{generated}/api/protos/vkCreateSwapchainKHR.txt[]
   * pname:pSwapchain is a pointer to a slink:VkSwapchainKHR handle in which
     the created swapchain object will be returned.
 
-ifdef::VK_EXT_full_screen_exclusive[]
-If the pname:oldSwapchain parameter of pname:pCreateInfo is a valid
-swapchain, which has exclusive full-screen access, that access is released
-from pname:oldSwapchain.
-If the command succeeds in this case, the newly created swapchain will
-automatically acquire exclusive full-screen access from pname:oldSwapchain.
-
-[NOTE]
-.Note
-====
-This implicit transfer is intended to avoid exiting and entering full-screen
-exclusive mode, which may otherwise cause unwanted visual updates to the
-display.
-====
-
-In some cases, swapchain creation may: fail if exclusive full-screen mode is
-requested for application control, but for some implementation-specific
-reason exclusive full-screen access is unavailable for the particular
-combination of parameters provided.
-If this occurs, ename:VK_ERROR_INITIALIZATION_FAILED will be returned.
-
-[NOTE]
-.Note
-====
-In particular, it will fail if the pname:imageExtent member of
-pname:pCreateInfo does not match the extents of the monitor.
-ifdef::VK_KHR_win32_surface[]
-Other reasons for failure may include the app not being set as high-dpi
-aware, or if the physical device and monitor are not compatible in this
-mode.
-====
-endif::VK_KHR_win32_surface[]
-
-endif::VK_EXT_full_screen_exclusive[]
-
-include::{generated}/validity/protos/vkCreateSwapchainKHR.txt[]
+include::../../validity/protos/vkCreateSwapchainKHR.txt[]
 --
 
 [open,refpage='VkSwapchainCreateInfoKHR',desc='Structure specifying parameters of a newly created swapchain object',type='structs']
@@ -140,7 +105,7 @@ include::{generated}/validity/protos/vkCreateSwapchainKHR.txt[]
 
 The sname:VkSwapchainCreateInfoKHR structure is defined as:
 
-include::{generated}/api/structs/VkSwapchainCreateInfoKHR.txt[]
+include::../../api/structs/VkSwapchainCreateInfoKHR.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -268,11 +233,11 @@ endif::VK_KHR_shared_presentable_image[]
 ****
   * [[VUID-VkSwapchainCreateInfoKHR-surface-01270]]
     pname:surface must: be a surface that is supported by the device as
-    determined using flink:vkGetPhysicalDeviceSurfaceSupportKHR
+    determined using fname:vkGetPhysicalDeviceSurfaceSupportKHR
   * [[VUID-VkSwapchainCreateInfoKHR-minImageCount-01271]]
     pname:minImageCount must: be greater than or equal to the value returned
     in the pname:minImageCount member of the sname:VkSurfaceCapabilitiesKHR
-    structure returned by flink:vkGetPhysicalDeviceSurfaceCapabilitiesKHR
+    structure returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR
     for the surface
   * [[VUID-VkSwapchainCreateInfoKHR-minImageCount-01272]]
     pname:minImageCount must: be less than or equal to the value returned in
@@ -389,27 +354,9 @@ ifdef::VK_KHR_swapchain_mutable_format[]
     greater than zero and pname:pViewFormats must: have an element equal to
     pname:imageFormat
 endif::VK_KHR_swapchain_mutable_format[]
-ifdef::VK_KHR_surface_protected_capabilities[]
-  * [[VUID-VkSwapchainCreateInfoKHR-flags-03187]]
-    If pname:flags contains ename:VK_SWAPCHAIN_CREATE_PROTECTED_BIT_KHR,
-    then sname:VkSurfaceProtectedCapabilitiesKHR::pname:supportsProtected
-    must: be ename:VK_TRUE in the slink:VkSurfaceProtectedCapabilitiesKHR
-    structure returned by flink:vkGetPhysicalDeviceSurfaceCapabilities2KHR
-    for pname:surface
-endif::VK_KHR_surface_protected_capabilities[]
-ifdef::VK_EXT_full_screen_exclusive,VK_KHR_win32_surface[]
-  * [[VUID-VkSwapchainCreateInfoKHR-pNext-02679]]
-    If the pname:pNext chain includes an instance of
-    slink:VkSurfaceFullScreenExclusiveInfoEXT with its
-    pname:fullScreenExclusive member set to
-    ename:VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT, and
-    pname:surface was created using flink:vkCreateWin32SurfaceKHR, an
-    instance of slink:VkSurfaceFullScreenExclusiveWin32InfoEXT must: be
-    present in the pname:pNext chain
-endif::VK_EXT_full_screen_exclusive,VK_KHR_win32_surface[]
 ****
 
-include::{generated}/validity/structs/VkSwapchainCreateInfoKHR.txt[]
+include::../../validity/structs/VkSwapchainCreateInfoKHR.txt[]
 --
 
 [open,refpage='VkSwapchainCreateFlagBitsKHR',desc='Bitmask controlling swapchain creation',type='enums']
@@ -418,7 +365,7 @@ include::{generated}/validity/structs/VkSwapchainCreateInfoKHR.txt[]
 Bits which can: be set in slink:VkSwapchainCreateInfoKHR::pname:flags,
 specifying parameters of swapchain creation, are:
 
-include::{generated}/api/enums/VkSwapchainCreateFlagBitsKHR.txt[]
+include::../../api/enums/VkSwapchainCreateFlagBitsKHR.txt[]
 
 ifdef::VK_VERSION_1_1,VK_KHR_device_group[]
   * ename:VK_SWAPCHAIN_CREATE_SPLIT_INSTANCE_BIND_REGIONS_BIT_KHR specifies
@@ -447,7 +394,7 @@ endif::VK_KHR_swapchain_mutable_format[]
 
 [open,refpage='VkSwapchainCreateFlagsKHR',desc='Bitmask of VkSwapchainCreateFlagBitsKHR',type='flags']
 --
-include::{generated}/api/flags/VkSwapchainCreateFlagsKHR.txt[]
+include::../../api/flags/VkSwapchainCreateFlagsKHR.txt[]
 
 tname:VkSwapchainCreateFlagsKHR is a bitmask type for setting a mask of zero
 or more elink:VkSwapchainCreateFlagBitsKHR.
@@ -465,7 +412,7 @@ with.
 
 The sname:VkDeviceGroupSwapchainCreateInfoKHR structure is defined as:
 
-include::{generated}/api/structs/VkDeviceGroupSwapchainCreateInfoKHR.txt[]
+include::../../api/structs/VkDeviceGroupSwapchainCreateInfoKHR.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -474,80 +421,10 @@ include::{generated}/api/structs/VkDeviceGroupSwapchainCreateInfoKHR.txt[]
 If this structure is not present, pname:modes is considered to be
 ename:VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR.
 
-include::{generated}/validity/structs/VkDeviceGroupSwapchainCreateInfoKHR.txt[]
+include::../../validity/structs/VkDeviceGroupSwapchainCreateInfoKHR.txt[]
 --
 
 endif::VK_VERSION_1_1,VK_KHR_device_group[]
-
-ifdef::VK_AMD_display_native_hdr[]
-[open,refpage='VkSwapchainDisplayNativeHdrCreateInfoAMD',desc='Structure specifying display native HDR parameters of a newly created swapchain object',type='structs']
---
-
-If the pname:pNext chain of slink:VkSwapchainCreateInfoKHR includes a
-sname:VkSwapchainDisplayNativeHdrCreateInfoAMD structure, then that
-structure includes additional swapchain creation parameters specific to
-display native HDR support.
-
-The sname:VkSwapchainDisplayNativeHdrCreateInfoAMD structure is defined as:
-
-include::{generated}/api/structs/VkSwapchainDisplayNativeHdrCreateInfoAMD.txt[]
-
-  * pname:sType is the type of this structure.
-  * pname:pNext is `NULL` or a pointer to an extension-specific structure.
-  * pname:localDimmingEnable specifies whether local dimming is enabled for
-    the swapchain.
-
-If the pname:pNext chain of slink:VkSwapchainCreateInfoKHR does not contain
-this structure, the default value for pname:localDimmingEnable is
-ename:VK_TRUE, meaning local dimming is initially enabled for the swapchain.
-
-include::{generated}/validity/structs/VkSwapchainDisplayNativeHdrCreateInfoAMD.txt[]
-
-.Valid Usage
-****
-  * [[VUID-VkSwapchainDisplayNativeHdrCreateInfoAMD-localDimmingEnable-XXXXX]]
-    It is only valid to set pname:localDimmingEnable to ename:VK_TRUE if
-    slink:VkDisplayNativeHdrSurfaceCapabilitiesAMD::pname:localDimmingSupport
-    is supported.
-****
---
-
-[open,refpage='vkSetLocalDimmingAMD',desc='Set Local Dimming',type='protos']
---
-The local dimming HDR setting may also be changed over the life of a
-swapchain by calling:
-
-include::{generated}/api/protos/vkSetLocalDimmingAMD.txt[]
-
-  * pname:device is the device associated with pname:swapChain.
-  * pname:swapChain handle to enable local dimming.
-  * pname:localDimmingEnable specifies whether local dimming is enabled for
-    the swapchain.
-
-include::{generated}/validity/protos/vkSetLocalDimmingAMD.txt[]
-.Valid Usage
-****
-
-  * [[VUID-vkSetLocalDimmingAMD-XXXXX]]
-    It is only valid to call flink:vkSetLocalDimmingAMD if
-    slink:VkDisplayNativeHdrSurfaceCapabilitiesAMD::pname:localDimmingSupport
-    is supported.
-****
---
-endif::VK_AMD_display_native_hdr[]
-
-ifdef::VK_EXT_full_screen_exclusive[]
---
-
-If the pname:pNext chain of slink:VkSwapchainCreateInfoKHR includes a
-slink:VkSurfaceFullScreenExclusiveInfoEXT structure, then that structure
-specifies the application's preferred full-screen presentation behavior.
-If this structure is not present, pname:fullScreenExclusive is considered to
-be ename:VK_FULL_SCREEN_EXCLUSIVE_DEFAULT_EXT.
-
---
-
-endif::VK_EXT_full_screen_exclusive[]
 
 ifdef::VK_EXT_display_control[]
 include::../VK_EXT_display_control/swapchain_counters.txt[]
@@ -590,16 +467,16 @@ endif::VK_KHR_swapchain_mutable_format[]
 all other bits are unset
 endif::VK_VERSION_1_1,VK_KHR_device_group,VK_KHR_swapchain_mutable_format[]
 | pname:imageType               | ename:VK_IMAGE_TYPE_2D
-| pname:format                  | pname:pCreateInfo\->pname:imageFormat
-| pname:extent                  | {pname:pCreateInfo\->pname:imageExtent.width, pname:pCreateInfo\->pname:imageExtent.height, `1`}
+| pname:format                  | `pCreateInfo->imageFormat`
+| pname:extent                  | `{pCreateInfo->imageExtent.width, pCreateInfo->imageExtent.height, 1}`
 | pname:mipLevels               | 1
-| pname:arrayLayers             | pname:pCreateInfo\->pname:imageArrayLayers
+| pname:arrayLayers             | `pCreateInfo->imageArrayLayers`
 | pname:samples                 | ename:VK_SAMPLE_COUNT_1_BIT
 | pname:tiling                  | ename:VK_IMAGE_TILING_OPTIMAL
-| pname:usage                   | pname:pCreateInfo\->pname:imageUsage
-| pname:sharingMode             | pname:pCreateInfo\->pname:imageSharingMode
-| pname:queueFamilyIndexCount   | pname:pCreateInfo\->pname:queueFamilyIndexCount
-| pname:pQueueFamilyIndices     | pname:pCreateInfo\->pname:pQueueFamilyIndices
+| pname:usage                   | `pCreateInfo->imageUsage`
+| pname:sharingMode             | `pCreateInfo->imageSharingMode`
+| pname:queueFamilyIndexCount   | `pCreateInfo->queueFamilyIndexCount`
+| pname:pQueueFamilyIndices     | `pCreateInfo->pQueueFamilyIndices`
 | pname:initialLayout           | ename:VK_IMAGE_LAYOUT_UNDEFINED
 |====
 
@@ -647,7 +524,7 @@ they may: differ on a per-physical device basis.
 
 To destroy a swapchain object call:
 
-include::{generated}/api/protos/vkDestroySwapchainKHR.txt[]
+include::../../api/protos/vkDestroySwapchainKHR.txt[]
 
   * pname:device is the slink:VkDevice associated with pname:swapchain.
   * pname:swapchain is the swapchain to destroy.
@@ -671,11 +548,6 @@ ifdef::VK_KHR_display_swapchain[]
 include::../VK_KHR_display_swapchain/destroy_swapchain_interactions.txt[]
 endif::VK_KHR_display_swapchain[]
 
-ifdef::VK_EXT_full_screen_exclusive[]
-If pname:swapchain has exclusive full-screen access, it is released before
-the swapchain is destroyed.
-endif::VK_EXT_full_screen_exclusive[]
-
 .Valid Usage
 ****
   * [[VUID-vkDestroySwapchainKHR-swapchain-01282]]
@@ -689,7 +561,7 @@ endif::VK_EXT_full_screen_exclusive[]
     created, pname:pAllocator must: be `NULL`
 ****
 
-include::{generated}/validity/protos/vkDestroySwapchainKHR.txt[]
+include::../../validity/protos/vkDestroySwapchainKHR.txt[]
 --
 
 ifdef::VK_KHR_display_swapchain[]
@@ -701,7 +573,7 @@ endif::VK_KHR_display_swapchain[]
 
 To obtain the array of presentable images associated with a swapchain, call:
 
-include::{generated}/api/protos/vkGetSwapchainImagesKHR.txt[]
+include::../../api/protos/vkGetSwapchainImagesKHR.txt[]
 
   * pname:device is the device associated with pname:swapchain.
   * pname:swapchain is the swapchain to query.
@@ -724,7 +596,7 @@ images for pname:swapchain, ename:VK_INCOMPLETE will be returned instead of
 ename:VK_SUCCESS to indicate that not all the available values were
 returned.
 
-include::{generated}/validity/protos/vkGetSwapchainImagesKHR.txt[]
+include::../../validity/protos/vkGetSwapchainImagesKHR.txt[]
 --
 
 [NOTE]
@@ -735,14 +607,19 @@ can: create command buffers that reference these images prior to entering
 its main rendering loop.
 ====
 
-Images returned by flink:vkGetSwapchainImagesKHR are fully backed by memory
-before they are passed to the application.
+The implementation will have already allocated and bound the memory backing
+the sname:VkImage objects returned by fname:vkGetSwapchainImagesKHR.
+The memory for each image will not alias with the memory for other images or
+with any sname:VkDeviceMemory object.
+As such, performing any operation affecting the binding of memory to a
+presentable image results in undefined: behavior.
 All presentable images are initially in the ename:VK_IMAGE_LAYOUT_UNDEFINED
 layout, thus before using presentable images, the application must:
 transition them to a valid layout for the intended use.
 
 Further, the lifetime of presentable images is controlled by the
-implementation, so applications must: not destroy a presentable image.
+implementation so destroying a presentable image with flink:vkDestroyImage
+results in undefined: behavior.
 See flink:vkDestroySwapchainKHR for further details on the lifetime of
 presentable images.
 
@@ -766,7 +643,7 @@ endif::VK_VERSION_1_1,VK_KHR_device_group[]
 To acquire an available presentable image to use, and retrieve the index of
 that image, call:
 
-include::{generated}/api/protos/vkAcquireNextImageKHR.txt[]
+include::../../api/protos/vkAcquireNextImageKHR.txt[]
 
   * pname:device is the device associated with pname:swapchain.
   * pname:swapchain is the non-retired swapchain from which an image is
@@ -804,7 +681,7 @@ include::{generated}/api/protos/vkAcquireNextImageKHR.txt[]
     code:UINT64_MAX
 ****
 
-include::{generated}/validity/protos/vkAcquireNextImageKHR.txt[]
+include::../../validity/protos/vkAcquireNextImageKHR.txt[]
 --
 
 When successful, fname:vkAcquireNextImageKHR acquires a presentable image
@@ -987,7 +864,7 @@ ifdef::VK_VERSION_1_1,VK_KHR_device_group[]
 To acquire an available presentable image to use, and retrieve the index of
 that image, call:
 
-include::{generated}/api/protos/vkAcquireNextImage2KHR.txt[]
+include::../../api/protos/vkAcquireNextImage2KHR.txt[]
 
   * pname:device is the device associated with pname:swapchain.
   * pname:pAcquireInfo is a pointer to a structure of type
@@ -1007,7 +884,7 @@ include::{generated}/api/protos/vkAcquireNextImage2KHR.txt[]
     of pname:pAcquireInfo must: not be code:UINT64_MAX
 ****
 
-include::{generated}/validity/protos/vkAcquireNextImage2KHR.txt[]
+include::../../validity/protos/vkAcquireNextImage2KHR.txt[]
 --
 
 [open,refpage='VkAcquireNextImageInfoKHR',desc='Structure specifying parameters of the acquire',type='structs']
@@ -1015,7 +892,7 @@ include::{generated}/validity/protos/vkAcquireNextImage2KHR.txt[]
 
 The sname:VkAcquireNextImageInfoKHR structure is defined as:
 
-include::{generated}/api/structs/VkAcquireNextImageInfoKHR.txt[]
+include::../../api/structs/VkAcquireNextImageInfoKHR.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -1067,7 +944,7 @@ succeeds, which the other physical device(s) can: wait upon.
     pname:deviceMask must: not be zero
 ****
 
-include::{generated}/validity/structs/VkAcquireNextImageInfoKHR.txt[]
+include::../../validity/structs/VkAcquireNextImageInfoKHR.txt[]
 --
 
 endif::VK_VERSION_1_1,VK_KHR_device_group[]
@@ -1078,7 +955,7 @@ endif::VK_VERSION_1_1,VK_KHR_device_group[]
 After queueing all rendering commands and transitioning the image to the
 correct layout, to queue an image for presentation, call:
 
-include::{generated}/api/protos/vkQueuePresentKHR.txt[]
+include::../../api/protos/vkQueuePresentKHR.txt[]
 
   * pname:queue is a queue that is capable of presentation to the target
     surface's platform on the same device as the image's swapchain.
@@ -1150,15 +1027,7 @@ ename:VK_ERROR_SURFACE_LOST_KHR, the set of queue operations are still
 considered to be enqueued and thus any semaphore to be waited on gets
 unsignaled when the corresponding queue operation is complete.
 
-ifdef::VK_EXT_full_screen_exclusive[]
-If any pname:swapchain member of pname:pPresentInfo was created with
-ename:VK_FULL_SCREEN_EXCLUSIVE_APPLICATION_CONTROLLED_EXT,
-ename:VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT will be returned if that
-swapchain does not have exclusive full-screen access, possibly for
-implementation-specific reasons outside of the application's control.
-endif::VK_EXT_full_screen_exclusive[]
-
-include::{generated}/validity/protos/vkQueuePresentKHR.txt[]
+include::../../validity/protos/vkQueuePresentKHR.txt[]
 --
 
 [open,refpage='VkPresentInfoKHR',desc='Structure describing parameters of a queue presentation',type='structs']
@@ -1166,7 +1035,7 @@ include::{generated}/validity/protos/vkQueuePresentKHR.txt[]
 
 The sname:VkPresentInfoKHR structure is defined as:
 
-include::{generated}/api/structs/VkPresentInfoKHR.txt[]
+include::../../api/structs/VkPresentInfoKHR.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -1237,7 +1106,7 @@ ifdef::VK_KHR_shared_presentable_image[]
 endif::VK_KHR_shared_presentable_image[]
 ****
 
-include::{generated}/validity/structs/VkPresentInfoKHR.txt[]
+include::../../validity/structs/VkPresentInfoKHR.txt[]
 --
 
 ifdef::VK_KHR_incremental_present[]
@@ -1259,7 +1128,7 @@ array of device masks and a device group present mode.
 
 The sname:VkDeviceGroupPresentInfoKHR structure is defined as:
 
-include::{generated}/api/structs/VkDeviceGroupPresentInfoKHR.txt[]
+include::../../api/structs/VkDeviceGroupPresentInfoKHR.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -1342,7 +1211,7 @@ considered to be ename:VK_DEVICE_GROUP_PRESENT_MODE_LOCAL_BIT_KHR.
     included in slink:VkDeviceGroupSwapchainCreateInfoKHR::pname:modes
 ****
 
-include::{generated}/validity/structs/VkDeviceGroupPresentInfoKHR.txt[]
+include::../../validity/structs/VkDeviceGroupPresentInfoKHR.txt[]
 --
 
 endif::VK_VERSION_1_1,VK_KHR_device_group[]
@@ -1350,10 +1219,6 @@ endif::VK_VERSION_1_1,VK_KHR_device_group[]
 ifdef::VK_GOOGLE_display_timing[]
 include::../VK_GOOGLE_display_timing/PresentTimeInfo.txt[]
 endif::VK_GOOGLE_display_timing[]
-
-ifdef::VK_GGP_frame_token[]
-include::../VK_GGP_frame_token.txt[]
-endif::VK_GGP_frame_token[]
 
 fname:vkQueuePresentKHR, releases the acquisition of the images referenced
 by pname:imageIndices.
@@ -1390,11 +1255,6 @@ the following rules in order:
   * If any of the presents would have a result of
     ename:VK_ERROR_OUT_OF_DATE_KHR if issued separately then
     ename:VK_ERROR_OUT_OF_DATE_KHR is returned.
-ifdef::VK_EXT_full_screen_exclusive[]
-  * If any of the presents would have a result of
-    ename:VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT if issued separately
-    then ename:VK_ERROR_FULL_SCREEN_EXCLUSIVE_MODE_LOST_EXT is returned.
-endif::VK_EXT_full_screen_exclusive[]
   * If any of the presents would have a result of ename:VK_SUBOPTIMAL_KHR if
     issued separately then ename:VK_SUBOPTIMAL_KHR is returned.
   * Otherwise ename:VK_SUCCESS is returned.

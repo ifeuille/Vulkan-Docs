@@ -338,17 +338,6 @@ ename:VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL, or
 ename:VK_IMAGE_LAYOUT_GENERAL layout in order to access its data in a
 shader.
 
-ifdef::VK_NV_ray_tracing[]
-[[descriptorsets-accelerationstructure]]
-=== Acceleration Structure
-
-An _acceleration structure_
-(ename:VK_DESCRIPTOR_TYPE_ACCELERATION_STRUCTURE_NV) is a descriptor type
-that is used to retrieve scene geometry from within shaders bound to ray
-tracing pipelines.
-Shaders have read-only access to the memory.
-endif::VK_NV_ray_tracing[]
-
 [[descriptorsets-sets]]
 == Descriptor Sets
 
@@ -379,7 +368,7 @@ samplers) an array of sampler descriptors.
 Descriptor set layout objects are represented by sname:VkDescriptorSetLayout
 handles:
 
-include::{generated}/api/handles/VkDescriptorSetLayout.txt[]
+include::../api/handles/VkDescriptorSetLayout.txt[]
 
 --
 
@@ -388,7 +377,7 @@ include::{generated}/api/handles/VkDescriptorSetLayout.txt[]
 
 To create descriptor set layout objects, call:
 
-include::{generated}/api/protos/vkCreateDescriptorSetLayout.txt[]
+include::../api/protos/vkCreateDescriptorSetLayout.txt[]
 
   * pname:device is the logical device that creates the descriptor set
     layout.
@@ -400,7 +389,7 @@ include::{generated}/api/protos/vkCreateDescriptorSetLayout.txt[]
   * pname:pSetLayout points to a slink:VkDescriptorSetLayout handle in which
     the resulting descriptor set layout object is returned.
 
-include::{generated}/validity/protos/vkCreateDescriptorSetLayout.txt[]
+include::../validity/protos/vkCreateDescriptorSetLayout.txt[]
 --
 
 [open,refpage='VkDescriptorSetLayoutCreateInfo',desc='Structure specifying parameters of a newly created descriptor set layout',type='structs']
@@ -409,7 +398,7 @@ include::{generated}/validity/protos/vkCreateDescriptorSetLayout.txt[]
 Information about the descriptor set layout is passed in an instance of the
 sname:VkDescriptorSetLayoutCreateInfo structure:
 
-include::{generated}/api/structs/VkDescriptorSetLayoutCreateInfo.txt[]
+include::../api/structs/VkDescriptorSetLayoutCreateInfo.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -462,7 +451,7 @@ ifdef::VK_EXT_descriptor_indexing[]
 endif::VK_EXT_descriptor_indexing[]
 ****
 
-include::{generated}/validity/structs/VkDescriptorSetLayoutCreateInfo.txt[]
+include::../validity/structs/VkDescriptorSetLayoutCreateInfo.txt[]
 --
 
 [open,refpage='VkDescriptorSetLayoutCreateFlagBits',desc='Bitmask specifying descriptor set layout properties',type='enums']
@@ -471,7 +460,7 @@ include::{generated}/validity/structs/VkDescriptorSetLayoutCreateInfo.txt[]
 Bits which can: be set in slink:VkDescriptorSetLayoutCreateInfo::pname:flags
 to specify options for descriptor set layout are:
 
-include::{generated}/api/enums/VkDescriptorSetLayoutCreateFlagBits.txt[]
+include::../api/enums/VkDescriptorSetLayoutCreateFlagBits.txt[]
 
 ifdef::VK_KHR_push_descriptor[]
   * ename:VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR specifies
@@ -503,7 +492,7 @@ endif::VK_KHR_push_descriptor[]
 
 [open,refpage='VkDescriptorSetLayoutCreateFlags',desc='Bitmask of VkDescriptorSetLayoutCreateFlagBits',type='flags']
 --
-include::{generated}/api/flags/VkDescriptorSetLayoutCreateFlags.txt[]
+include::../api/flags/VkDescriptorSetLayoutCreateFlags.txt[]
 
 tname:VkDescriptorSetLayoutCreateFlags is a bitmask type for setting a mask
 of zero or more elink:VkDescriptorSetLayoutCreateFlagBits.
@@ -514,7 +503,7 @@ of zero or more elink:VkDescriptorSetLayoutCreateFlagBits.
 
 The sname:VkDescriptorSetLayoutBinding structure is defined as:
 
-include::{generated}/api/structs/VkDescriptorSetLayoutBinding.txt[]
+include::../api/structs/VkDescriptorSetLayoutBinding.txt[]
 
   * pname:binding is the binding number of this entry and corresponds to a
     resource of the same binding number in the shader stages.
@@ -610,7 +599,7 @@ endif::VK_EXT_inline_uniform_block[]
     ename:VK_SHADER_STAGE_FRAGMENT_BIT
 ****
 
-include::{generated}/validity/structs/VkDescriptorSetLayoutBinding.txt[]
+include::../validity/structs/VkDescriptorSetLayoutBinding.txt[]
 --
 
 ifdef::VK_EXT_descriptor_indexing[]
@@ -625,7 +614,7 @@ descriptor set layout binding.
 The slink:VkDescriptorSetLayoutBindingFlagsCreateInfoEXT structure is
 defined as:
 
-include::{generated}/api/structs/VkDescriptorSetLayoutBindingFlagsCreateInfoEXT.txt[]
+include::../api/structs/VkDescriptorSetLayoutBindingFlagsCreateInfoEXT.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -736,7 +725,7 @@ endif::VK_EXT_inline_uniform_block[]
     ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC
 ****
 
-include::{generated}/validity/structs/VkDescriptorSetLayoutBindingFlagsCreateInfoEXT.txt[]
+include::../validity/structs/VkDescriptorSetLayoutBindingFlagsCreateInfoEXT.txt[]
 --
 
 [open,refpage='VkDescriptorBindingFlagBitsEXT',desc='Bitmask specifying descriptor set layout binding properties',type='enums']
@@ -746,7 +735,7 @@ Bits which can: be set in each element of
 slink:VkDescriptorSetLayoutBindingFlagsCreateInfoEXT::pname:pBindingFlags to
 specify options for the corresponding descriptor set layout binding are:
 
-include::{generated}/api/enums/VkDescriptorBindingFlagBitsEXT.txt[]
+include::../api/enums/VkDescriptorBindingFlagBitsEXT.txt[]
 
   * ename:VK_DESCRIPTOR_BINDING_UPDATE_AFTER_BIND_BIT_EXT indicates that if
     descriptors in this binding are updated between when the descriptor set
@@ -814,7 +803,7 @@ implementation to observe updates to descriptors that are used.
 
 [open,refpage='VkDescriptorBindingFlagsEXT',desc='Bitmask of VkDescriptorBindingFlagBitsEXT',type='flags']
 --
-include::{generated}/api/flags/VkDescriptorBindingFlagsEXT.txt[]
+include::../api/flags/VkDescriptorBindingFlagsEXT.txt[]
 
 tname:VkDescriptorBindingFlagsEXT is a bitmask type for setting a mask of
 zero or more elink:VkDescriptorBindingFlagBitsEXT.
@@ -831,13 +820,13 @@ To query information about whether a descriptor set layout can: be created,
 call:
 
 ifdef::VK_VERSION_1_1[]
-include::{generated}/api/protos/vkGetDescriptorSetLayoutSupport.txt[]
+include::../api/protos/vkGetDescriptorSetLayoutSupport.txt[]
 endif::VK_VERSION_1_1[]
 
 ifdef::VK_VERSION_1_1+VK_KHR_maintenance3[or the equivalent command]
 
 ifdef::VK_KHR_maintenance3[]
-include::{generated}/api/protos/vkGetDescriptorSetLayoutSupportKHR.txt[]
+include::../api/protos/vkGetDescriptorSetLayoutSupportKHR.txt[]
 endif::VK_KHR_maintenance3[]
 
   * pname:device is the logical device that would create the descriptor set
@@ -878,7 +867,7 @@ This is a sname:VkDevice query rather than sname:VkPhysicalDevice because
 the answer may: depend on enabled features.
 ====
 
-include::{generated}/validity/protos/vkGetDescriptorSetLayoutSupport.txt[]
+include::../validity/protos/vkGetDescriptorSetLayoutSupport.txt[]
 --
 
 [open,refpage='VkDescriptorSetLayoutSupport',desc='Structure returning information about whether a descriptor set layout can be supported',type='structs']
@@ -887,12 +876,12 @@ include::{generated}/validity/protos/vkGetDescriptorSetLayoutSupport.txt[]
 Information about support for the descriptor set layout is returned in an
 instance of the sname:VkDescriptorSetLayoutSupport structure:
 
-include::{generated}/api/structs/VkDescriptorSetLayoutSupport.txt[]
+include::../api/structs/VkDescriptorSetLayoutSupport.txt[]
 
 ifdef::VK_KHR_maintenance3[]
 or the equivalent
 
-include::{generated}/api/structs/VkDescriptorSetLayoutSupportKHR.txt[]
+include::../api/structs/VkDescriptorSetLayoutSupportKHR.txt[]
 endif::VK_KHR_maintenance3[]
 
   * pname:sType is the type of this structure.
@@ -903,7 +892,7 @@ endif::VK_KHR_maintenance3[]
 pname:supported is set to ename:VK_TRUE if the descriptor set can: be
 created, or else is set to ename:VK_FALSE.
 
-include::{generated}/validity/structs/VkDescriptorSetLayoutSupport.txt[]
+include::../validity/structs/VkDescriptorSetLayoutSupport.txt[]
 --
 
 endif::VK_VERSION_1_1,VK_KHR_maintenance3[]
@@ -918,7 +907,7 @@ includes a sname:VkDescriptorSetVariableDescriptorCountLayoutSupportEXT
 structure, then that structure returns additional information about whether
 the descriptor set layout is supported.
 
-include::{generated}/api/structs/VkDescriptorSetVariableDescriptorCountLayoutSupportEXT.txt[]
+include::../api/structs/VkDescriptorSetVariableDescriptorCountLayoutSupportEXT.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -948,7 +937,7 @@ will be returned.
 If the layout is not supported, then the value written to
 pname:maxVariableDescriptorCount is undefined:.
 
-include::{generated}/validity/structs/VkDescriptorSetVariableDescriptorCountLayoutSupportEXT.txt[]
+include::../validity/structs/VkDescriptorSetVariableDescriptorCountLayoutSupportEXT.txt[]
 --
 
 endif::VK_EXT_descriptor_indexing[]
@@ -1100,7 +1089,7 @@ myResult = vkCreateDescriptorSetLayout(
 
 To destroy a descriptor set layout, call:
 
-include::{generated}/api/protos/vkDestroyDescriptorSetLayout.txt[]
+include::../api/protos/vkDestroyDescriptorSetLayout.txt[]
 
   * pname:device is the logical device that destroys the descriptor set
     layout.
@@ -1119,7 +1108,7 @@ include::{generated}/api/protos/vkDestroyDescriptorSetLayout.txt[]
     pname:descriptorSetLayout was created, pname:pAllocator must: be `NULL`
 ****
 
-include::{generated}/validity/protos/vkDestroyDescriptorSetLayout.txt[]
+include::../validity/protos/vkDestroyDescriptorSetLayout.txt[]
 --
 
 
@@ -1142,7 +1131,7 @@ Each pipeline is created using a pipeline layout.
 
 Pipeline layout objects are represented by sname:VkPipelineLayout handles:
 
-include::{generated}/api/handles/VkPipelineLayout.txt[]
+include::../api/handles/VkPipelineLayout.txt[]
 
 --
 
@@ -1151,7 +1140,7 @@ include::{generated}/api/handles/VkPipelineLayout.txt[]
 
 To create a pipeline layout, call:
 
-include::{generated}/api/protos/vkCreatePipelineLayout.txt[]
+include::../api/protos/vkCreatePipelineLayout.txt[]
 
   * pname:device is the logical device that creates the pipeline layout.
   * pname:pCreateInfo is a pointer to an instance of the
@@ -1162,7 +1151,7 @@ include::{generated}/api/protos/vkCreatePipelineLayout.txt[]
   * pname:pPipelineLayout points to a slink:VkPipelineLayout handle in which
     the resulting pipeline layout object is returned.
 
-include::{generated}/validity/protos/vkCreatePipelineLayout.txt[]
+include::../validity/protos/vkCreatePipelineLayout.txt[]
 --
 
 [open,refpage='VkPipelineLayoutCreateInfo',desc='Structure specifying the parameters of a newly created pipeline layout object',type='structs']
@@ -1170,7 +1159,7 @@ include::{generated}/validity/protos/vkCreatePipelineLayout.txt[]
 
 The slink:VkPipelineLayoutCreateInfo structure is defined as:
 
-include::{generated}/api/structs/VkPipelineLayoutCreateInfo.txt[]
+include::../api/structs/VkPipelineLayoutCreateInfo.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -1596,12 +1585,12 @@ ifdef::VK_NV_ray_tracing[]
 endif::VK_NV_ray_tracing[]
 ****
 
-include::{generated}/validity/structs/VkPipelineLayoutCreateInfo.txt[]
+include::../validity/structs/VkPipelineLayoutCreateInfo.txt[]
 --
 
 [open,refpage='VkPipelineLayoutCreateFlags',desc='Reserved for future use',type='flags']
 --
-include::{generated}/api/flags/VkPipelineLayoutCreateFlags.txt[]
+include::../api/flags/VkPipelineLayoutCreateFlags.txt[]
 
 tname:VkPipelineLayoutCreateFlags is a bitmask type for setting a mask, but
 is currently reserved for future use.
@@ -1612,7 +1601,7 @@ is currently reserved for future use.
 
 The sname:VkPushConstantRange structure is defined as:
 
-include::{generated}/api/structs/VkPushConstantRange.txt[]
+include::../api/structs/VkPushConstantRange.txt[]
 
   * pname:stageFlags is a set of stage flags describing the shader stages
     that will access a range of push constants.
@@ -1642,7 +1631,7 @@ include::{generated}/api/structs/VkPushConstantRange.txt[]
     pname:offset
 ****
 
-include::{generated}/validity/structs/VkPushConstantRange.txt[]
+include::../validity/structs/VkPushConstantRange.txt[]
 --
 
 Once created, pipeline layouts are used as part of pipeline creation (see
@@ -1754,7 +1743,7 @@ endif::VK_NV_ray_tracing[]
 
 To destroy a pipeline layout, call:
 
-include::{generated}/api/protos/vkDestroyPipelineLayout.txt[]
+include::../api/protos/vkDestroyPipelineLayout.txt[]
 
   * pname:device is the logical device that destroys the pipeline layout.
   * pname:pipelineLayout is the pipeline layout to destroy.
@@ -1776,7 +1765,7 @@ include::{generated}/api/protos/vkDestroyPipelineLayout.txt[]
     fname:vkDestroyPipelineLayout is called
 ****
 
-include::{generated}/validity/protos/vkDestroyPipelineLayout.txt[]
+include::../validity/protos/vkDestroyPipelineLayout.txt[]
 --
 
 
@@ -1890,7 +1879,7 @@ multiple threads simultaneously.
 
 Descriptor pools are represented by sname:VkDescriptorPool handles:
 
-include::{generated}/api/handles/VkDescriptorPool.txt[]
+include::../api/handles/VkDescriptorPool.txt[]
 
 --
 
@@ -1899,7 +1888,7 @@ include::{generated}/api/handles/VkDescriptorPool.txt[]
 
 To create a descriptor pool object, call:
 
-include::{generated}/api/protos/vkCreateDescriptorPool.txt[]
+include::../api/protos/vkCreateDescriptorPool.txt[]
 
   * pname:device is the logical device that creates the descriptor pool.
   * pname:pCreateInfo is a pointer to an instance of the
@@ -1915,7 +1904,7 @@ pname:pAllocator controls host memory allocation as described in the
 
 The created descriptor pool is returned in pname:pDescriptorPool.
 
-include::{generated}/validity/protos/vkCreateDescriptorPool.txt[]
+include::../validity/protos/vkCreateDescriptorPool.txt[]
 --
 
 [open,refpage='VkDescriptorPoolCreateInfo',desc='Structure specifying parameters of a newly created descriptor pool',type='structs']
@@ -1924,7 +1913,7 @@ include::{generated}/validity/protos/vkCreateDescriptorPool.txt[]
 Additional information about the pool is passed in an instance of the
 sname:VkDescriptorPoolCreateInfo structure:
 
-include::{generated}/api/structs/VkDescriptorPoolCreateInfo.txt[]
+include::../api/structs/VkDescriptorPoolCreateInfo.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -1980,7 +1969,7 @@ endif::VK_EXT_descriptor_indexing[]
     pname:maxSets must: be greater than `0`
 ****
 
-include::{generated}/validity/structs/VkDescriptorPoolCreateInfo.txt[]
+include::../validity/structs/VkDescriptorPoolCreateInfo.txt[]
 --
 
 ifdef::VK_EXT_inline_uniform_block[]
@@ -2001,14 +1990,14 @@ pname:pNext chain of sname:VkDescriptorPoolCreateInfo.
 The sname:VkDescriptorPoolInlineUniformBlockCreateInfoEXT structure is
 defined as:
 
-include::{generated}/api/structs/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.txt[]
+include::../api/structs/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
   * pname:maxInlineUniformBlockBindings is the number of inline uniform
     block bindings to allocate.
 
-include::{generated}/validity/structs/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.txt[]
+include::../validity/structs/VkDescriptorPoolInlineUniformBlockCreateInfoEXT.txt[]
 
 --
 
@@ -2020,7 +2009,7 @@ endif::VK_EXT_inline_uniform_block[]
 Bits which can: be set in slink:VkDescriptorPoolCreateInfo::pname:flags to
 enable operations on a descriptor pool are:
 
-include::{generated}/api/enums/VkDescriptorPoolCreateFlagBits.txt[]
+include::../api/enums/VkDescriptorPoolCreateFlagBits.txt[]
 
   * ename:VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT specifies that
     descriptor sets can: return their individual allocations to the pool,
@@ -2044,7 +2033,7 @@ endif::VK_EXT_descriptor_indexing[]
 
 [open,refpage='VkDescriptorPoolCreateFlags',desc='Bitmask of VkDescriptorPoolCreateFlagBits',type='flags']
 --
-include::{generated}/api/flags/VkDescriptorPoolCreateFlags.txt[]
+include::../api/flags/VkDescriptorPoolCreateFlags.txt[]
 
 tname:VkDescriptorPoolCreateFlags is a bitmask type for setting a mask of
 zero or more elink:VkDescriptorPoolCreateFlagBits.
@@ -2055,7 +2044,7 @@ zero or more elink:VkDescriptorPoolCreateFlagBits.
 
 The sname:VkDescriptorPoolSize structure is defined as:
 
-include::{generated}/api/structs/VkDescriptorPoolSize.txt[]
+include::../api/structs/VkDescriptorPoolSize.txt[]
 
   * pname:type is the type of descriptor.
   * pname:descriptorCount is the number of descriptors of that type to
@@ -2077,7 +2066,7 @@ ifdef::VK_EXT_inline_uniform_block[]
 endif::VK_EXT_inline_uniform_block[]
 ****
 
-include::{generated}/validity/structs/VkDescriptorPoolSize.txt[]
+include::../validity/structs/VkDescriptorPoolSize.txt[]
 --
 
 [open,refpage='vkDestroyDescriptorPool',desc='Destroy a descriptor pool object',type='protos']
@@ -2085,7 +2074,7 @@ include::{generated}/validity/structs/VkDescriptorPoolSize.txt[]
 
 To destroy a descriptor pool, call:
 
-include::{generated}/api/protos/vkDestroyDescriptorPool.txt[]
+include::../api/protos/vkDestroyDescriptorPool.txt[]
 
   * pname:device is the logical device that destroys the descriptor pool.
   * pname:descriptorPool is the descriptor pool to destroy.
@@ -2110,7 +2099,7 @@ destroying that descriptor pool.
     pname:descriptorPool was created, pname:pAllocator must: be `NULL`
 ****
 
-include::{generated}/validity/protos/vkDestroyDescriptorPool.txt[]
+include::../validity/protos/vkDestroyDescriptorPool.txt[]
 --
 
 [open,refpage='VkDescriptorSet',desc='Opaque handle to a descriptor set object',type='handles']
@@ -2119,7 +2108,7 @@ include::{generated}/validity/protos/vkDestroyDescriptorPool.txt[]
 Descriptor sets are allocated from descriptor pool objects, and are
 represented by sname:VkDescriptorSet handles:
 
-include::{generated}/api/handles/VkDescriptorSet.txt[]
+include::../api/handles/VkDescriptorSet.txt[]
 
 --
 
@@ -2128,7 +2117,7 @@ include::{generated}/api/handles/VkDescriptorSet.txt[]
 
 To allocate descriptor sets from a descriptor pool, call:
 
-include::{generated}/api/protos/vkAllocateDescriptorSets.txt[]
+include::../api/protos/vkAllocateDescriptorSets.txt[]
 
   * pname:device is the logical device that owns the descriptor pool.
   * pname:pAllocateInfo is a pointer to an instance of the
@@ -2141,42 +2130,40 @@ The allocated descriptor sets are returned in pname:pDescriptorSets.
 
 When a descriptor set is allocated, the initial state is largely
 uninitialized and all descriptors are undefined:.
-Descriptors also become undefined: if the underlying resource is destroyed.
-Descriptor sets containing undefined: descriptors can: still be bound and
-used, subject to the following conditions:
-
+However, the descriptor set can: be bound in a command buffer without
+causing errors or exceptions.
 ifdef::VK_EXT_descriptor_indexing[]
-  * For descriptor set bindings created with the
-    ename:VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT bit set, all
-    descriptors in that binding that are dynamically used must: have been
-    populated before the descriptor set is
-    <<descriptorsets-binding,consumed>>.
-  * For descriptor set bindings created without the
-    ename:VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT bit set, all
-    descriptors in that binding that are statically used must: have been
-    populated before the descriptor set is
-    <<descriptorsets-binding,consumed>>.
+For descriptor set bindings created with the
+ename:VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT bit set, all descriptors
+in that binding that are dynamically used must: have been populated before
+the descriptor set is <<descriptorsets-binding,consumed>>.
+For descriptor set bindings created without the
+ename:VK_DESCRIPTOR_BINDING_PARTIALLY_BOUND_BIT_EXT bit set, all descriptors
+in that binding that are statically used must: have been populated before
+the descriptor set is <<descriptorsets-binding,consumed>>.
 endif::VK_EXT_descriptor_indexing[]
 ifndef::VK_EXT_descriptor_indexing[]
-  * Descriptors that are <<shaders-staticuse,statically used>> must: have
-    been populated before the descriptor set is
-    <<descriptorsets-binding,consumed>>.
+All descriptors that are statically used must: have been populated before
+the descriptor set is consumed.
 endif::VK_EXT_descriptor_indexing[]
 ifdef::VK_EXT_inline_uniform_block[]
-  * Descriptor bindings with descriptor type of
-    ename:VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT can: be undefined:
-    when the descriptor set is <<descriptorsets-binding,consumed>>; though
-    values in that block will be undefined:.
+Descriptor bindings with descriptor type of
+ename:VK_DESCRIPTOR_TYPE_INLINE_UNIFORM_BLOCK_EXT need not be populated
+before the descriptor set is consumed.
 endif::VK_EXT_inline_uniform_block[]
-  * Entries that are not used by a pipeline can: have undefined:
-    descriptors.
+Entries that are not used by a pipeline can: have uninitialized descriptors
+or descriptors of resources that have been destroyed, and executing a draw
+or dispatch with such a descriptor set bound does not cause undefined:
+behavior.
+This means applications need not populate unused entries with dummy
+descriptors.
 
 ifdef::VK_VERSION_1_1,VK_KHR_maintenance1[]
 If a call to fname:vkAllocateDescriptorSets would cause the total number of
 descriptor sets allocated from the pool to exceed the value of
 slink:VkDescriptorPoolCreateInfo::pname:maxSets used to create
-pname:pAllocateInfo\->pname:descriptorPool, then the allocation may: fail
-due to lack of space in the descriptor pool.
+pname:pAllocateInfo->pname:descriptorPool, then the allocation may: fail due
+to lack of space in the descriptor pool.
 Similarly, the allocation may: fail due to lack of space if the call to
 fname:vkAllocateDescriptorSets would cause the number of any given
 descriptor type to exceed the sum of all the pname:descriptorCount members
@@ -2239,7 +2226,7 @@ are allowed.
 ====
 endif::VK_VERSION_1_1,VK_KHR_maintenance2[]
 
-include::{generated}/validity/protos/vkAllocateDescriptorSets.txt[]
+include::../validity/protos/vkAllocateDescriptorSets.txt[]
 --
 
 [open,refpage='VkDescriptorSetAllocateInfo',desc='Structure specifying the allocation parameters for descriptor sets',type='structs']
@@ -2247,7 +2234,7 @@ include::{generated}/validity/protos/vkAllocateDescriptorSets.txt[]
 
 The sname:VkDescriptorSetAllocateInfo structure is defined as:
 
-include::{generated}/api/structs/VkDescriptorSetAllocateInfo.txt[]
+include::../api/structs/VkDescriptorSetAllocateInfo.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -2281,7 +2268,7 @@ ifdef::VK_EXT_descriptor_indexing[]
 endif::VK_EXT_descriptor_indexing[]
 ****
 
-include::{generated}/validity/structs/VkDescriptorSetAllocateInfo.txt[]
+include::../validity/structs/VkDescriptorSetAllocateInfo.txt[]
 --
 
 ifdef::VK_EXT_descriptor_indexing[]
@@ -2297,7 +2284,7 @@ allocated.
 The sname:VkDescriptorSetVariableDescriptorCountAllocateInfoEXT structure is
 defined as:
 
-include::{generated}/api/structs/VkDescriptorSetVariableDescriptorCountAllocateInfoEXT.txt[]
+include::../api/structs/VkDescriptorSetVariableDescriptorCountAllocateInfoEXT.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -2334,7 +2321,7 @@ ignored.
     when the descriptor set layout was created.
 ****
 
-include::{generated}/validity/structs/VkDescriptorSetVariableDescriptorCountAllocateInfoEXT.txt[]
+include::../validity/structs/VkDescriptorSetVariableDescriptorCountAllocateInfoEXT.txt[]
 --
 endif::VK_EXT_descriptor_indexing[]
 
@@ -2343,7 +2330,7 @@ endif::VK_EXT_descriptor_indexing[]
 
 To free allocated descriptor sets, call:
 
-include::{generated}/api/protos/vkFreeDescriptorSets.txt[]
+include::../api/protos/vkFreeDescriptorSets.txt[]
 
   * pname:device is the logical device that owns the descriptor pool.
   * pname:descriptorPool is the descriptor pool from which the descriptor
@@ -2373,7 +2360,7 @@ in pname:pDescriptorSets are invalid.
     ename:VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT flag
 ****
 
-include::{generated}/validity/protos/vkFreeDescriptorSets.txt[]
+include::../validity/protos/vkFreeDescriptorSets.txt[]
 --
 
 [open,refpage='vkResetDescriptorPool',desc='Resets a descriptor pool object',type='protos']
@@ -2382,7 +2369,7 @@ include::{generated}/validity/protos/vkFreeDescriptorSets.txt[]
 To return all descriptor sets allocated from a given pool to the pool,
 rather than freeing individual descriptor sets, call:
 
-include::{generated}/api/protos/vkResetDescriptorPool.txt[]
+include::../api/protos/vkResetDescriptorPool.txt[]
 
   * pname:device is the logical device that owns the descriptor pool.
   * pname:descriptorPool is the descriptor pool to be reset.
@@ -2399,12 +2386,12 @@ pool, and the descriptor sets are implicitly freed.
     must: have completed execution
 ****
 
-include::{generated}/validity/protos/vkResetDescriptorPool.txt[]
+include::../validity/protos/vkResetDescriptorPool.txt[]
 --
 
 [open,refpage='VkDescriptorPoolResetFlags',desc='Reserved for future use',type='flags']
 --
-include::{generated}/api/flags/VkDescriptorPoolResetFlags.txt[]
+include::../api/flags/VkDescriptorPoolResetFlags.txt[]
 
 tname:VkDescriptorPoolResetFlags is a bitmask type for setting a mask, but
 is currently reserved for future use.
@@ -2421,7 +2408,7 @@ Once allocated, descriptor sets can: be updated with a combination of write
 and copy operations.
 To update descriptor sets, call:
 
-include::{generated}/api/protos/vkUpdateDescriptorSets.txt[]
+include::../api/protos/vkUpdateDescriptorSets.txt[]
 
   * pname:device is the logical device that updates the descriptor sets.
   * pname:descriptorWriteCount is the number of elements in the
@@ -2478,7 +2465,7 @@ ifdef::VK_EXT_descriptor_indexing[]
 endif::VK_EXT_descriptor_indexing[]
 ****
 
-include::{generated}/validity/protos/vkUpdateDescriptorSets.txt[]
+include::../validity/protos/vkUpdateDescriptorSets.txt[]
 --
 
 [open,refpage='VkWriteDescriptorSet',desc='Structure specifying the parameters of a descriptor set write operation',type='structs']
@@ -2486,7 +2473,7 @@ include::{generated}/validity/protos/vkUpdateDescriptorSets.txt[]
 
 The sname:VkWriteDescriptorSet structure is defined as:
 
-include::{generated}/api/structs/VkWriteDescriptorSet.txt[]
+include::../api/structs/VkWriteDescriptorSet.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -2778,7 +2765,7 @@ ifdef::VK_EXT_descriptor_indexing[]
 endif::VK_EXT_descriptor_indexing[]
 ****
 
-include::{generated}/validity/structs/VkWriteDescriptorSet.txt[]
+include::../validity/structs/VkWriteDescriptorSet.txt[]
 --
 
 [open,refpage='VkDescriptorType',desc='Specifies the type of a descriptor in a descriptor set',type='enums']
@@ -2788,7 +2775,7 @@ The type of descriptors in a descriptor set is specified by
 slink:VkWriteDescriptorSet::pname:descriptorType, which must: be one of the
 values:
 
-include::{generated}/api/enums/VkDescriptorType.txt[]
+include::../api/enums/VkDescriptorType.txt[]
 
   * ename:VK_DESCRIPTOR_TYPE_SAMPLER specifies a <<descriptorsets-sampler,
     sampler descriptor>>.
@@ -2868,7 +2855,7 @@ endif::VK_NV_ray_tracing[]
 
 The sname:VkDescriptorBufferInfo structure is defined as:
 
-include::{generated}/api/structs/VkDescriptorBufferInfo.txt[]
+include::../api/structs/VkDescriptorBufferInfo.txt[]
 
   * pname:buffer is the buffer resource.
   * pname:offset is the offset in bytes from the start of pname:buffer.
@@ -2907,7 +2894,7 @@ pname:range is the static size used for all dynamic offsets.
     less than or equal to the size of pname:buffer minus pname:offset
 ****
 
-include::{generated}/validity/structs/VkDescriptorBufferInfo.txt[]
+include::../validity/structs/VkDescriptorBufferInfo.txt[]
 --
 
 [open,refpage='VkDescriptorImageInfo',desc='Structure specifying descriptor image info',type='structs']
@@ -2915,7 +2902,7 @@ include::{generated}/validity/structs/VkDescriptorBufferInfo.txt[]
 
 The sname:VkDescriptorImageInfo structure is defined as:
 
-include::{generated}/api/structs/VkDescriptorImageInfo.txt[]
+include::../api/structs/VkDescriptorImageInfo.txt[]
 
   * pname:sampler is a sampler handle, and is used in descriptor updates for
     types ename:VK_DESCRIPTOR_TYPE_SAMPLER and
@@ -2967,7 +2954,7 @@ endif::VK_VERSION_1_1,VK_KHR_sampler_ycbcr_conversion[]
 ****
 
 
-include::{generated}/validity/structs/VkDescriptorImageInfo.txt[]
+include::../validity/structs/VkDescriptorImageInfo.txt[]
 --
 
 ifdef::VK_EXT_inline_uniform_block[]
@@ -2982,7 +2969,7 @@ chain of sname:VkWriteDescriptorSet.
 
 The sname:VkWriteDescriptorSetInlineUniformBlockEXT structure is defined as:
 
-include::{generated}/api/structs/VkWriteDescriptorSetInlineUniformBlockEXT.txt[]
+include::../api/structs/VkWriteDescriptorSetInlineUniformBlockEXT.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -2997,7 +2984,7 @@ include::{generated}/api/structs/VkWriteDescriptorSetInlineUniformBlockEXT.txt[]
     pname:dataSize must: be an integer multiple of `4`
 ****
 
-include::{generated}/validity/structs/VkWriteDescriptorSetInlineUniformBlockEXT.txt[]
+include::../validity/structs/VkWriteDescriptorSetInlineUniformBlockEXT.txt[]
 --
 endif::VK_EXT_inline_uniform_block[]
 
@@ -3010,7 +2997,7 @@ endif::VK_NV_ray_tracing[]
 
 The sname:VkCopyDescriptorSet structure is defined as:
 
-include::{generated}/api/structs/VkCopyDescriptorSet.txt[]
+include::../api/structs/VkCopyDescriptorSet.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -3114,7 +3101,7 @@ ifdef::VK_EXT_descriptor_indexing[]
 endif::VK_EXT_descriptor_indexing[]
 ****
 
-include::{generated}/validity/structs/VkCopyDescriptorSet.txt[]
+include::../validity/structs/VkCopyDescriptorSet.txt[]
 --
 
 
@@ -3133,12 +3120,12 @@ frequently updating the same set of descriptors in descriptor sets.
 Descriptor update template objects are represented by
 sname:VkDescriptorUpdateTemplate handles:
 
-include::{generated}/api/handles/VkDescriptorUpdateTemplate.txt[]
+include::../api/handles/VkDescriptorUpdateTemplate.txt[]
 
 ifdef::VK_KHR_descriptor_update_template[]
 or the equivalent
 
-include::{generated}/api/handles/VkDescriptorUpdateTemplateKHR.txt[]
+include::../api/handles/VkDescriptorUpdateTemplateKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
 --
@@ -3184,13 +3171,13 @@ structure.
 To create a descriptor update template, call:
 
 ifdef::VK_VERSION_1_1[]
-include::{generated}/api/protos/vkCreateDescriptorUpdateTemplate.txt[]
+include::../api/protos/vkCreateDescriptorUpdateTemplate.txt[]
 endif::VK_VERSION_1_1[]
 
 ifdef::VK_VERSION_1_1+VK_KHR_descriptor_update_template[or the equivalent command]
 
 ifdef::VK_KHR_descriptor_update_template[]
-include::{generated}/api/protos/vkCreateDescriptorUpdateTemplateKHR.txt[]
+include::../api/protos/vkCreateDescriptorUpdateTemplateKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
   * pname:device is the logical device that creates the descriptor update
@@ -3208,7 +3195,7 @@ endif::VK_KHR_push_descriptor[]
     sname:VkDescriptorUpdateTemplate handle in which the resulting
     descriptor update template object is returned.
 
-include::{generated}/validity/protos/vkCreateDescriptorUpdateTemplate.txt[]
+include::../validity/protos/vkCreateDescriptorUpdateTemplate.txt[]
 
 --
 
@@ -3216,12 +3203,12 @@ include::{generated}/validity/protos/vkCreateDescriptorUpdateTemplate.txt[]
 --
 
 The slink:VkDescriptorUpdateTemplateCreateInfo structure is defined as:
-include::{generated}/api/structs/VkDescriptorUpdateTemplateCreateInfo.txt[]
+include::../api/structs/VkDescriptorUpdateTemplateCreateInfo.txt[]
 
 ifdef::VK_KHR_descriptor_update_template[]
 or the equivalent
 
-include::{generated}/api/structs/VkDescriptorUpdateTemplateCreateInfoKHR.txt[]
+include::../api/structs/VkDescriptorUpdateTemplateCreateInfoKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
   * pname:sType is the type of this structure.
@@ -3299,18 +3286,18 @@ endif::VK_KHR_push_descriptor[]
 ****
 
 
-include::{generated}/validity/structs/VkDescriptorUpdateTemplateCreateInfo.txt[]
+include::../validity/structs/VkDescriptorUpdateTemplateCreateInfo.txt[]
 
 --
 
 [open,refpage='VkDescriptorUpdateTemplateCreateFlags',desc='Reserved for future use',type='flags']
 --
-include::{generated}/api/flags/VkDescriptorUpdateTemplateCreateFlags.txt[]
+include::../api/flags/VkDescriptorUpdateTemplateCreateFlags.txt[]
 
 ifdef::VK_KHR_descriptor_update_template[]
 or the equivalent
 
-include::{generated}/api/flags/VkDescriptorUpdateTemplateCreateFlagsKHR.txt[]
+include::../api/flags/VkDescriptorUpdateTemplateCreateFlagsKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
 tname:VkDescriptorUpdateTemplateCreateFlags is a bitmask type for setting a
@@ -3323,12 +3310,12 @@ The descriptor update template type is determined by the
 slink:VkDescriptorUpdateTemplateCreateInfo::pname:templateType property,
 which takes the following values:
 
-include::{generated}/api/enums/VkDescriptorUpdateTemplateType.txt[]
+include::../api/enums/VkDescriptorUpdateTemplateType.txt[]
 
 ifdef::VK_KHR_descriptor_update_template[]
 or the equivalent
 
-include::{generated}/api/enums/VkDescriptorUpdateTemplateTypeKHR.txt[]
+include::../api/enums/VkDescriptorUpdateTemplateTypeKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
   * ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET specifies that
@@ -3347,12 +3334,12 @@ endif::VK_KHR_push_descriptor[]
 --
 
 The sname:VkDescriptorUpdateTemplateEntry structure is defined as:
-include::{generated}/api/structs/VkDescriptorUpdateTemplateEntry.txt[]
+include::../api/structs/VkDescriptorUpdateTemplateEntry.txt[]
 
 ifdef::VK_KHR_descriptor_update_template[]
 or the equivalent
 
-include::{generated}/api/structs/VkDescriptorUpdateTemplateEntryKHR.txt[]
+include::../api/structs/VkDescriptorUpdateTemplateEntryKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
   * pname:dstBinding is the descriptor binding to update when using this
@@ -3423,7 +3410,7 @@ ifdef::VK_EXT_inline_uniform_block[]
 endif::VK_EXT_inline_uniform_block[]
 ****
 
-include::{generated}/validity/structs/VkDescriptorUpdateTemplateEntry.txt[]
+include::../validity/structs/VkDescriptorUpdateTemplateEntry.txt[]
 
 --
 
@@ -3433,13 +3420,13 @@ include::{generated}/validity/structs/VkDescriptorUpdateTemplateEntry.txt[]
 To destroy a descriptor update template, call:
 
 ifdef::VK_VERSION_1_1[]
-include::{generated}/api/protos/vkDestroyDescriptorUpdateTemplate.txt[]
+include::../api/protos/vkDestroyDescriptorUpdateTemplate.txt[]
 endif::VK_VERSION_1_1[]
 
 ifdef::VK_VERSION_1_1+VK_KHR_descriptor_update_template[or the equivalent command]
 
 ifdef::VK_KHR_descriptor_update_template[]
-include::{generated}/api/protos/vkDestroyDescriptorUpdateTemplateKHR.txt[]
+include::../api/protos/vkDestroyDescriptorUpdateTemplateKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
   * pname:device is the logical device that has been used to create the
@@ -3460,7 +3447,7 @@ endif::VK_KHR_descriptor_update_template[]
     pname:descriptorSetLayout was created, pname:pAllocator must: be `NULL`
 ****
 
-include::{generated}/validity/protos/vkDestroyDescriptorUpdateTemplate.txt[]
+include::../validity/protos/vkDestroyDescriptorUpdateTemplate.txt[]
 
 --
 
@@ -3471,13 +3458,13 @@ Once a sname:VkDescriptorUpdateTemplate has been created, descriptor sets
 can: be updated by calling:
 
 ifdef::VK_VERSION_1_1[]
-include::{generated}/api/protos/vkUpdateDescriptorSetWithTemplate.txt[]
+include::../api/protos/vkUpdateDescriptorSetWithTemplate.txt[]
 endif::VK_VERSION_1_1[]
 
 ifdef::VK_VERSION_1_1+VK_KHR_descriptor_update_template[or the equivalent command]
 
 ifdef::VK_KHR_descriptor_update_template[]
-include::{generated}/api/protos/vkUpdateDescriptorSetWithTemplateKHR.txt[]
+include::../api/protos/vkUpdateDescriptorSetWithTemplateKHR.txt[]
 endif::VK_KHR_descriptor_update_template[]
 
   * pname:device is the logical device that updates the descriptor sets.
@@ -3499,7 +3486,7 @@ endif::VK_KHR_descriptor_update_template[]
     flink:vkCreateDescriptorUpdateTemplate
 ****
 
-include::{generated}/validity/protos/vkUpdateDescriptorSetWithTemplate.txt[]
+include::../validity/protos/vkUpdateDescriptorSetWithTemplate.txt[]
 
 .API example
 [source,c++]
@@ -3595,7 +3582,7 @@ endif::VK_VERSION_1_1,VK_KHR_descriptor_update_template[]
 
 To bind one or more descriptor sets to a command buffer, call:
 
-include::{generated}/api/protos/vkCmdBindDescriptorSets.txt[]
+include::../api/protos/vkCmdBindDescriptorSets.txt[]
 
   * pname:commandBuffer is the command buffer that the descriptor sets will
     be bound to.
@@ -3720,7 +3707,7 @@ descriptor set.
     size of the buffer
 ****
 
-include::{generated}/validity/protos/vkCmdBindDescriptorSets.txt[]
+include::../validity/protos/vkCmdBindDescriptorSets.txt[]
 --
 
 
@@ -3737,7 +3724,7 @@ buffer.
 
 To push descriptor updates into a command buffer, call:
 
-include::{generated}/api/protos/vkCmdPushDescriptorSetKHR.txt[]
+include::../api/protos/vkCmdPushDescriptorSetKHR.txt[]
 
   * pname:commandBuffer is the command buffer that the descriptors will be
     recorded in.
@@ -3762,21 +3749,24 @@ descriptor set and later bound to a command buffer.
 Push descriptors allow for incremental updates of descriptors without
 managing the lifetime of descriptor sets.
 
-When a command buffer begins recording, all push descriptors are undefined:.
+When a command buffer begins recording, all push descriptors have undefined:
+contents.
 Push descriptors can: be updated incrementally and cause shaders to use the
 updated descriptors for subsequent rendering commands (either compute or
 graphics, according to the pname:pipelineBindPoint) until the descriptor is
 overwritten, or else until the set is disturbed as described in
 <<descriptorsets-compatibility, Pipeline Layout Compatibility>>.
 When the set is disturbed or push descriptors with a different descriptor
-set layout are set, all push descriptors are undefined:.
+set layout are set, all push descriptors become invalid.
 
-Push descriptors that are <<shaders-staticuse,statically used>> by a
-pipeline must: not be undefined: at the time that a draw or dispatch command
-is recorded to execute using that pipeline.
+Valid descriptors must: be pushed for all bindings that any shaders in a
+pipeline access, at the time that a draw or dispatch command is recorded to
+execute using that pipeline.
 This includes immutable sampler descriptors, which must: be pushed before
 they are accessed by a pipeline.
-Push descriptors that are not statically used can: remain undefined:.
+However, if none of the shaders in a pipeline statically use certain
+bindings in the push descriptor set, then those descriptors need not be
+valid.
 
 Push descriptors do not use dynamic offsets.
 Instead, the corresponding non-dynamic descriptor types can: be used and the
@@ -3812,7 +3802,7 @@ pipeline layout.
     ename:VK_DESCRIPTOR_SET_LAYOUT_CREATE_PUSH_DESCRIPTOR_BIT_KHR
 ****
 
-include::{generated}/validity/protos/vkCmdPushDescriptorSetKHR.txt[]
+include::../validity/protos/vkCmdPushDescriptorSetKHR.txt[]
 
 --
 
@@ -3826,7 +3816,7 @@ It is also possible to use a descriptor update template to specify the push
 descriptors to update.
 To do so, call:
 
-include::{generated}/api/protos/vkCmdPushDescriptorSetWithTemplateKHR.txt[]
+include::../api/protos/vkCmdPushDescriptorSetWithTemplateKHR.txt[]
 
   * pname:commandBuffer is the command buffer that the descriptors will be
     recorded in.
@@ -3857,7 +3847,7 @@ include::{generated}/api/protos/vkCmdPushDescriptorSetWithTemplateKHR.txt[]
     flink:vkCreateDescriptorUpdateTemplateKHR
 ****
 
-include::{generated}/validity/protos/vkCmdPushDescriptorSetWithTemplateKHR.txt[]
+include::../validity/protos/vkCmdPushDescriptorSetWithTemplateKHR.txt[]
 
 .API example
 [source,c++]
@@ -3940,7 +3930,7 @@ buffer.
 
 To update push constants, call:
 
-include::{generated}/api/protos/vkCmdPushConstants.txt[]
+include::../api/protos/vkCmdPushConstants.txt[]
 
   * pname:commandBuffer is the command buffer in which the push constant
     update will be recorded.
@@ -3988,7 +3978,7 @@ created on are ignored.
     pname:offset
 ****
 
-include::{generated}/validity/protos/vkCmdPushConstants.txt[]
+include::../validity/protos/vkCmdPushConstants.txt[]
 --
 
 ifdef::VK_EXT_buffer_device_address[]
@@ -4003,7 +3993,7 @@ ifdef::VK_EXT_buffer_device_address[]
 To query a 64-bit buffer device address value through which buffer memory
 can: be accessed in a shader, call:
 
-include::{generated}/api/protos/vkGetBufferDeviceAddressEXT.txt[]
+include::../api/protos/vkGetBufferDeviceAddressEXT.txt[]
 
   * pname:device is the logical device that the buffer was created on.
   * pname:pInfo is a pointer to an instance of the
@@ -4019,8 +4009,8 @@ code:PhysicalStorageBufferEXT storage class.
 For example, this value can: be stored in a uniform buffer, and the shader
 can: read the value from the uniform buffer and use it to do a dependent
 read/write to this buffer.
-A value of zero is reserved as a "`null`" pointer and must: not be returned
-as a valid buffer device address.
+A value of zero is reserved as a "null" pointer and must: not be returned as
+a valid buffer device address.
 All loads, stores, and atomics in a shader through
 code:PhysicalStorageBufferEXT pointers must: access addresses in the address
 range of some buffer.
@@ -4040,7 +4030,7 @@ value will be the same address.
     feature must: be enabled
 ****
 
-include::{generated}/validity/protos/vkGetBufferDeviceAddressEXT.txt[]
+include::../validity/protos/vkGetBufferDeviceAddressEXT.txt[]
 --
 
 [open,refpage='VkBufferDeviceAddressInfoEXT',desc='Structure specifying the buffer to query an address for',type='structs']
@@ -4048,7 +4038,7 @@ include::{generated}/validity/protos/vkGetBufferDeviceAddressEXT.txt[]
 
 The sname:VkBufferDeviceAddressInfoEXT structure is defined as:
 
-include::{generated}/api/structs/VkBufferDeviceAddressInfoEXT.txt[]
+include::../api/structs/VkBufferDeviceAddressInfoEXT.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -4066,7 +4056,7 @@ include::{generated}/api/structs/VkBufferDeviceAddressInfoEXT.txt[]
     ename:VK_BUFFER_USAGE_SHADER_DEVICE_ADDRESS_BIT_EXT
 ****
 
-include::{generated}/validity/structs/VkBufferDeviceAddressInfoEXT.txt[]
+include::../validity/structs/VkBufferDeviceAddressInfoEXT.txt[]
 --
 
 endif::VK_EXT_buffer_device_address[]

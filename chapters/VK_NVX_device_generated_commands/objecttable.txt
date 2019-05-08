@@ -5,7 +5,7 @@
 
 The device-side bindings are registered inside a table:
 
-include::{generated}/api/handles/VkObjectTableNVX.txt[]
+include::../../api/handles/VkObjectTableNVX.txt[]
 
 --
 
@@ -29,7 +29,7 @@ maximum.
 
 To create object tables, call:
 
-include::{generated}/api/protos/vkCreateObjectTableNVX.txt[]
+include::../../api/protos/vkCreateObjectTableNVX.txt[]
 
   * pname:device is the logical device that creates the object table.
   * pname:pCreateInfo is a pointer to an instance of the
@@ -40,7 +40,7 @@ include::{generated}/api/protos/vkCreateObjectTableNVX.txt[]
   * pname:pObjectTable points to a slink:VkObjectTableNVX handle in which
     the resulting object table is returned.
 
-include::{generated}/validity/protos/vkCreateObjectTableNVX.txt[]
+include::../../validity/protos/vkCreateObjectTableNVX.txt[]
 --
 
 [open,refpage='VkObjectTableCreateInfoNVX',desc='Structure specifying the parameters of a newly created object table',type='structs']
@@ -48,7 +48,7 @@ include::{generated}/validity/protos/vkCreateObjectTableNVX.txt[]
 
 The sname:VkObjectTableCreateInfoNVX structure is defined as:
 
-include::{generated}/api/structs/VkObjectTableCreateInfoNVX.txt[]
+include::../../api/structs/VkObjectTableCreateInfoNVX.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -107,7 +107,7 @@ include::{generated}/api/structs/VkObjectTableCreateInfoNVX.txt[]
     by the device.
 ****
 
-include::{generated}/validity/structs/VkObjectTableCreateInfoNVX.txt[]
+include::../../validity/structs/VkObjectTableCreateInfoNVX.txt[]
 --
 
 [open,refpage='VkObjectEntryTypeNVX',desc='Enum specifying object table entry type',type='enums']
@@ -117,7 +117,7 @@ Possible values of elements of the
 slink:VkObjectTableCreateInfoNVX::pname:pObjectEntryTypes array, specifying
 the entry type of a configuration, are:
 
-include::{generated}/api/enums/VkObjectEntryTypeNVX.txt[]
+include::../../api/enums/VkObjectEntryTypeNVX.txt[]
 
   * ename:VK_OBJECT_ENTRY_TYPE_DESCRIPTOR_SET_NVX specifies a
     sname:VkDescriptorSet resource entry that is registered via
@@ -143,7 +143,7 @@ Bits which can: be set in elements of the
 slink:VkObjectTableCreateInfoNVX::pname:pObjectEntryUsageFlags array,
 specifying binding usage of an entry, are:
 
-include::{generated}/api/enums/VkObjectEntryUsageFlagBitsNVX.txt[]
+include::../../api/enums/VkObjectEntryUsageFlagBitsNVX.txt[]
 
   * ename:VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX specifies that the resource
     is bound to ename:VK_PIPELINE_BIND_POINT_GRAPHICS
@@ -154,7 +154,7 @@ include::{generated}/api/enums/VkObjectEntryUsageFlagBitsNVX.txt[]
 
 [open,refpage='VkObjectEntryUsageFlagsNVX',desc='Bitmask of VkObjectEntryUsageFlagBitsNVX',type='flags']
 --
-include::{generated}/api/flags/VkObjectEntryUsageFlagsNVX.txt[]
+include::../../api/flags/VkObjectEntryUsageFlagsNVX.txt[]
 
 tname:VkObjectEntryUsageFlagsNVX is a bitmask type for setting a mask of
 zero or more elink:VkObjectEntryUsageFlagBitsNVX.
@@ -165,7 +165,7 @@ zero or more elink:VkObjectEntryUsageFlagBitsNVX.
 
 To destroy an object table, call:
 
-include::{generated}/api/protos/vkDestroyObjectTableNVX.txt[]
+include::../../api/protos/vkDestroyObjectTableNVX.txt[]
 
   * pname:device is the logical device that destroys the table.
   * pname:objectTable is the table to destroy.
@@ -185,7 +185,7 @@ include::{generated}/api/protos/vkDestroyObjectTableNVX.txt[]
     was created, pname:pAllocator must: be `NULL`.
 ****
 
-include::{generated}/validity/protos/vkDestroyObjectTableNVX.txt[]
+include::../../validity/protos/vkDestroyObjectTableNVX.txt[]
 --
 
 
@@ -199,7 +199,7 @@ code:uint32_t index within an object table.
 As long as the object table references such objects, they must: not be
 deleted.
 
-include::{generated}/api/protos/vkRegisterObjectsNVX.txt[]
+include::../../api/protos/vkRegisterObjectsNVX.txt[]
 
   * pname:device is the logical device that creates the object table.
   * pname:objectTable is the table for which the resources are registered.
@@ -228,14 +228,14 @@ include::{generated}/api/protos/vkRegisterObjectsNVX.txt[]
     provided at pname:objectTable creation time.
 ****
 
-include::{generated}/validity/protos/vkRegisterObjectsNVX.txt[]
+include::../../validity/protos/vkRegisterObjectsNVX.txt[]
 --
 
 [open,refpage='VkObjectTableEntryNVX',desc='Common parameters of an object table resource entry',type='structs']
 --
 Common to all resource entries are:
 
-include::{generated}/api/structs/VkObjectTableEntryNVX.txt[]
+include::../../api/structs/VkObjectTableEntryNVX.txt[]
 
   * pname:type defines the entry type
   * pname:flags defines which elink:VkPipelineBindPoint the resource can be
@@ -251,12 +251,12 @@ include::{generated}/api/structs/VkObjectTableEntryNVX.txt[]
     ename:VK_OBJECT_ENTRY_USAGE_COMPUTE_BIT_NVX
 ****
 
-include::{generated}/validity/structs/VkObjectTableEntryNVX.txt[]
+include::../../validity/structs/VkObjectTableEntryNVX.txt[]
 --
 
 [open,refpage='VkObjectTablePipelineEntryNVX',desc='Parameters of an object table pipeline entry',type='structs']
 --
-include::{generated}/api/structs/VkObjectTablePipelineEntryNVX.txt[]
+include::../../api/structs/VkObjectTablePipelineEntryNVX.txt[]
 
   * pname:pipeline specifies the slink:VkPipeline that this resource entry
     references.
@@ -267,12 +267,12 @@ include::{generated}/api/structs/VkObjectTablePipelineEntryNVX.txt[]
     pname:type must: be ename:VK_OBJECT_ENTRY_TYPE_PIPELINE_NVX
 ****
 
-include::{generated}/validity/structs/VkObjectTablePipelineEntryNVX.txt[]
+include::../../validity/structs/VkObjectTablePipelineEntryNVX.txt[]
 --
 
 [open,refpage='VkObjectTableDescriptorSetEntryNVX',desc='Parameters of an object table descriptor set entry',type='structs']
 --
-include::{generated}/api/structs/VkObjectTableDescriptorSetEntryNVX.txt[]
+include::../../api/structs/VkObjectTableDescriptorSetEntryNVX.txt[]
 
   * pname:pipelineLayout specifies the slink:VkPipelineLayout that the
     pname:descriptorSet is used with.
@@ -285,13 +285,13 @@ include::{generated}/api/structs/VkObjectTableDescriptorSetEntryNVX.txt[]
     pname:type must: be ename:VK_OBJECT_ENTRY_TYPE_DESCRIPTOR_SET_NVX
 ****
 
-include::{generated}/validity/structs/VkObjectTableDescriptorSetEntryNVX.txt[]
+include::../../validity/structs/VkObjectTableDescriptorSetEntryNVX.txt[]
 --
 
 [open,refpage='VkObjectTableVertexBufferEntryNVX',desc='Parameters of an object table vertex buffer entry',type='structs']
 --
 
-include::{generated}/api/structs/VkObjectTableVertexBufferEntryNVX.txt[]
+include::../../api/structs/VkObjectTableVertexBufferEntryNVX.txt[]
 
   * pname:buffer specifies the slink:VkBuffer that can be bound as vertex
     bufer
@@ -302,13 +302,13 @@ include::{generated}/api/structs/VkObjectTableVertexBufferEntryNVX.txt[]
     pname:type must: be ename:VK_OBJECT_ENTRY_TYPE_VERTEX_BUFFER_NVX
 ****
 
-include::{generated}/validity/structs/VkObjectTableVertexBufferEntryNVX.txt[]
+include::../../validity/structs/VkObjectTableVertexBufferEntryNVX.txt[]
 --
 
 [open,refpage='VkObjectTableIndexBufferEntryNVX',desc='Parameters of an object table index buffer entry',type='structs']
 --
 
-include::{generated}/api/structs/VkObjectTableIndexBufferEntryNVX.txt[]
+include::../../api/structs/VkObjectTableIndexBufferEntryNVX.txt[]
 
   * pname:buffer specifies the slink:VkBuffer that can be bound as index
     buffer
@@ -321,13 +321,13 @@ include::{generated}/api/structs/VkObjectTableIndexBufferEntryNVX.txt[]
     pname:type must: be ename:VK_OBJECT_ENTRY_TYPE_INDEX_BUFFER_NVX
 ****
 
-include::{generated}/validity/structs/VkObjectTableIndexBufferEntryNVX.txt[]
+include::../../validity/structs/VkObjectTableIndexBufferEntryNVX.txt[]
 --
 
 [open,refpage='VkObjectTablePushConstantEntryNVX',desc='Parameters of an object table push constant entry',type='structs']
 --
 
-include::{generated}/api/structs/VkObjectTablePushConstantEntryNVX.txt[]
+include::../../api/structs/VkObjectTablePushConstantEntryNVX.txt[]
 
   * pname:pipelineLayout specifies the slink:VkPipelineLayout that the
     pushconstants are used with
@@ -340,7 +340,7 @@ include::{generated}/api/structs/VkObjectTablePushConstantEntryNVX.txt[]
     pname:type must: be ename:VK_OBJECT_ENTRY_TYPE_PUSH_CONSTANT_NVX
 ****
 
-include::{generated}/validity/structs/VkObjectTablePushConstantEntryNVX.txt[]
+include::../../validity/structs/VkObjectTablePushConstantEntryNVX.txt[]
 --
 
 [open,refpage='vkUnregisterObjectsNVX',desc='Unregister resource bindings in an object table',type='protos']
@@ -348,7 +348,7 @@ include::{generated}/validity/structs/VkObjectTablePushConstantEntryNVX.txt[]
 
 Use the following command to unregister resources from an object table:
 
-include::{generated}/api/protos/vkUnregisterObjectsNVX.txt[]
+include::../../api/protos/vkUnregisterObjectsNVX.txt[]
 
   * pname:device is the logical device that creates the object table.
   * pname:objectTable is the table from which the resources are
@@ -372,5 +372,5 @@ include::{generated}/api/protos/vkUnregisterObjectsNVX.txt[]
     been completed.
 ****
 
-include::{generated}/validity/protos/vkUnregisterObjectsNVX.txt[]
+include::../../validity/protos/vkUnregisterObjectsNVX.txt[]
 --

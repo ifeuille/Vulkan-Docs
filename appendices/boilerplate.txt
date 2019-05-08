@@ -63,29 +63,32 @@ implementations.
 On many platforms the following macros are empty strings, causing platform-
 and compiler-specific default calling conventions to be used.
 
-[open,refpage='VKAPI_ATTR',desc='Vulkan function attribute macro',type='freeform',anchor='boilerplate-platform-specific-calling-conventions',xrefs='VKAPI_CALL VKAPI_PTR']
---
+// @refBegin VKAPI_ATTR Vulkan function attributes
+
 dname:VKAPI_ATTR is a macro placed before the return type in Vulkan API
 function declarations.
 This macro controls calling conventions for C++11 and GCC/Clang-style
 compilers.
---
 
-[open,refpage='VKAPI_CALL',desc='Vulkan function calling conventions macro',type='freeform',anchor='boilerplate-platform-specific-calling-conventions',xrefs='VKAPI_ATTR VKAPI_PTR']
---
+// @refEnd VKAPI_ATTR VKAPI_CALL VKAPI_PTR
+
+// @refBegin VKAPI_CALL Vulkan function calling conventions
+
 dname:VKAPI_CALL is a macro placed after the return type in Vulkan API
 function declarations.
 This macro controls calling conventions for MSVC-style compilers.
---
 
-[open,refpage='VKAPI_PTR',desc='Vulkan function pointer calling conventions macro',type='freeform',anchor='boilerplate-platform-specific-calling-conventions',xrefs='VKAPI_ATTR VKAPI_CALL']
---
+// @refEnd VKAPI_CALL VKAPI_ATTR VKAPI_PTR
+
+// @refBegin VKAPI_PTR Vulkan function pointer calling conventions
+
 dname:VKAPI_PTR is a macro placed between the '(' and '*' in Vulkan API
 function pointer declarations.
 This macro also controls calling conventions, and typically has the same
 definition as dname:VKAPI_ATTR or dname:VKAPI_CALL, depending on the
 compiler.
---
+
+// @refEnd VKAPI_PTR VKAPI_ATTR VKAPI_CALL
 
 With these macros, a Vulkan function declaration takes the form of:
 
@@ -102,11 +105,10 @@ typedef <return_type> (VKAPI_PTR *PFN_<command_name>)(<command_parameters>);
 ----------------------------------------
 
 
-[[boilerplate-platform-specific-header-control]]
 ==== Platform-Specific Header Control
 
-[open,refpage='VK_NO_STDINT_H',desc='Control definition of <stdint.h> types',type='freeform',anchor='boilerplate-platform-specific-header-control']
---
+// @refBegin VK_NO_STDINT_H Control definition of `<stdint.h>` types
+
 If the code:VK_NO_STDINT_H macro is defined by the application at compile
 time, extended integer types used by the Vulkan API, such as code:uint8_t,
 must: also be defined by the application.
@@ -115,8 +117,8 @@ If code:VK_NO_STDINT_H is not defined, the system `<stdint.h>` is used to
 define these types.
 There is a fallback path when Microsoft Visual Studio version 2008 and
 earlier versions are detected at compile time.
---
 
+// @refEnd VK_NO_STDINT_H
 
 
 [[boilerplate-vulkan-core]]
@@ -141,7 +143,7 @@ dname:VK_HEADER_VERSION is the version number of the `vulkan_core.h` header.
 This value is kept synchronized with the patch version of the released
 Specification.
 
-include::{generated}/api/defines/VK_HEADER_VERSION.txt[]
+include::../api/defines/VK_HEADER_VERSION.txt[]
 
 --
 
@@ -151,7 +153,7 @@ include::{generated}/api/defines/VK_HEADER_VERSION.txt[]
 dname:VK_API_VERSION is now commented out of `vulkan_core.h` and cannot: be
 used.
 
-include::{generated}/api/defines/VK_API_VERSION.txt[]
+include::../api/defines/VK_API_VERSION.txt[]
 
 --
 
@@ -164,7 +166,7 @@ include::{generated}/api/defines/VK_API_VERSION.txt[]
 dname:VK_DEFINE_HANDLE defines a <<fundamentals-objectmodel-overview,
 dispatchable handle>> type.
 
-include::{generated}/api/defines/VK_DEFINE_HANDLE.txt[]
+include::../api/defines/VK_DEFINE_HANDLE.txt[]
 
   * pname:object is the name of the resulting C type.
 
@@ -179,7 +181,7 @@ management, such as slink:VkDevice.
 dname:VK_DEFINE_NON_DISPATCHABLE_HANDLE defines a
 <<fundamentals-objectmodel-overview, non-dispatchable handle>> type.
 
-include::{generated}/api/defines/VK_DEFINE_NON_DISPATCHABLE_HANDLE.txt[]
+include::../api/defines/VK_DEFINE_NON_DISPATCHABLE_HANDLE.txt[]
 
   * pname:object is the name of the resulting C type.
 
@@ -196,28 +198,33 @@ If dname:VK_DEFINE_NON_DISPATCHABLE_HANDLE is already defined when
 This allows the application to define a binary-compatible custom handle
 which may: provide more type-safety or other features needed by the
 application.
-Applications must: not define handles in a way that is not binary compatible
-- where binary compatibility is platform dependent.
+Behavior is undefined: if the application defines a non-binary-compatible
+handle and may: result in memory corruption or application termination.
+Binary compatibility is platform dependent so the application must: be
+careful if it overrides the default dname:VK_DEFINE_NON_DISPATCHABLE_HANDLE
+definition.
 ====
 
 --
 
 [open,refpage='VK_NULL_HANDLE',desc='Reserved non-valid object handle',type='defines']
 --
+
 dname:VK_NULL_HANDLE is a reserved value representing a non-valid object
 handle.
 It may be passed to and returned from Vulkan commands only when
 <<fundamentals-validusage-handles, specifically allowed>>.
 
-include::{generated}/api/defines/VK_NULL_HANDLE.txt[]
+include::../api/defines/VK_NULL_HANDLE.txt[]
+
 --
 
 
 [[boilerplate-wsi-header]]
 == Window System-Specific Header Control (Informative)
 
-[open,refpage='WSIheaders',desc='Control inclusion of window system interface extensions',type='freeform',anchor='boilerplate-wsi-headers']
---
+// @refBegin WSIheaders Control inclusion of window system interface extensions
+
 To use a Vulkan extension supporting a platform-specific window system,
 header files for that window systems must: be included at compile time, or
 platform-specific types must: be forward-declared.
@@ -271,11 +278,6 @@ ifdef::VK_EXT_acquire_xlib_display[]
 | `<<VK_EXT_acquire_xlib_display>>`  | X11 XRAndR             | `vulkan_xlib_xrandr.h`   | `<X11/Xlib.h>`,
                                                                                            `<X11/extensions{wbro}/Xrandr.h>`    | dname:VK_USE_PLATFORM_XLIB_XRANDR_EXT
 endif::VK_EXT_acquire_xlib_display[]
-ifdef::VK_GGP_stream_descriptor_surface[]
-| `<<VK_GGP_stream_descriptor_surface>>`,
-  `<<VK_GGP_frame_token>>`
-                                     | Google Games Platform | `vulkan_ggp.h`        | <ggp_c/vulkan_types.h>         | dname:VK_USE_PLATFORM_GGP
-endif::VK_GGP_stream_descriptor_surface[]
 ifdef::VK_MVK_ios_surface[]
 | `<<VK_MVK_ios_surface>>`           | iOS                    | `vulkan_ios.h`           | None                           | dname:VK_USE_PLATFORM_IOS_MVK
 endif::VK_MVK_ios_surface[]
@@ -285,9 +287,6 @@ endif::VK_MVK_macos_surface[]
 ifdef::VK_NN_vi_surface[]
 | `<<VK_NN_vi_surface>>`             | VI                     | `vulkan_vi.h`            | None                           | dname:VK_USE_PLATFORM_VI_NN
 endif::VK_NN_vi_surface[]
-ifdef::VK_FUCHSIA_imagepipe_surface[]
-| `<<VK_FUCHSIA_imagepipe_surface>>` | Fuchsia                | `vulkan_fuchsia.h`       | `<zircon/types.h>`             | dname:VK_USE_PLATFORM_FUCHSIA
-endif::VK_FUCHSIA_imagepipe_surface[]
 ifdef::VK_EXT_metal_surface[]
 | `<<VK_EXT_metal_surface>>`         | Metal on CoreAnimation | `vulkan_metal.h`         | None                           | dname:VK_USE_PLATFORM_METAL_EXT
 endif::VK_EXT_metal_surface[]
@@ -302,4 +301,5 @@ themselves.
 Each extension name will only link to a description of that extension when
 viewing a specification built with that extension included.
 ====
---
+
+// @refEnd WSIheaders

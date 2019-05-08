@@ -86,7 +86,7 @@ in this Specification.
 accomplish through the API, while *must not* means something that the
 application is capable of expressing through the API, but that the
 consequences of doing so are undefined: and potentially unrecoverable for
-the implementation (see <<fundamentals-errors>>).
+the implementation.
 ==================
 
 Unless otherwise noted in the section heading, all sections and appendices
@@ -127,7 +127,7 @@ http://dx.doi.org/10.1109/IEEESTD.2008.4610935, August, 2008.
 [[data-format]] A. Garrard, _Khronos Data Format Specification, version
 1.2_,
 https://www.khronos.org/registry/DataFormat/specs/1.2/dataformat.1.2.html,
-March, 2019.
+September, 2017.
 
 // If the author name is placed on a standalone line, we see the mysterious
 // asciidoc error 'list item index: expected 2 got 10'. Apparently the 'A.'

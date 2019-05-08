@@ -2,7 +2,7 @@
 
 ## Macros
 
-The macros in `spec-macros.rb` and `spec-macros/extension.rb` are
+The macros in `vulkan-macros.rb` and `vulkan-macros/extension.rb` are
 described in the "Vulkan Documentation and Extensions: Procedures and
 Conventions" document (see the [styleguide](../styleguide.txt)).
 
@@ -23,8 +23,3 @@ using Docbook for PDFs.
 ## Stylesheets
 
 `khronos.css` is the stylesheet used for HTML output.
-
-## Chunked Spec Index
-
-`chunkindex` contains scripts for building and using a search index for the
-Vulkan chunked HTML specification.

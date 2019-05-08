@@ -31,7 +31,7 @@ particular type.
 
 Query pools are represented by sname:VkQueryPool handles:
 
-include::{generated}/api/handles/VkQueryPool.txt[]
+include::../api/handles/VkQueryPool.txt[]
 
 --
 
@@ -40,7 +40,7 @@ include::{generated}/api/handles/VkQueryPool.txt[]
 
 To create a query pool, call:
 
-include::{generated}/api/protos/vkCreateQueryPool.txt[]
+include::../api/protos/vkCreateQueryPool.txt[]
 
   * pname:device is the logical device that creates the query pool.
   * pname:pCreateInfo is a pointer to an instance of the
@@ -51,7 +51,7 @@ include::{generated}/api/protos/vkCreateQueryPool.txt[]
   * pname:pQueryPool is a pointer to a slink:VkQueryPool handle in which the
     resulting query pool object is returned.
 
-include::{generated}/validity/protos/vkCreateQueryPool.txt[]
+include::../validity/protos/vkCreateQueryPool.txt[]
 --
 
 [open,refpage='VkQueryPoolCreateInfo',desc='Structure specifying parameters of a newly created query pool',type='structs']
@@ -59,7 +59,7 @@ include::{generated}/validity/protos/vkCreateQueryPool.txt[]
 
 The sname:VkQueryPoolCreateInfo structure is defined as:
 
-include::{generated}/api/structs/VkQueryPoolCreateInfo.txt[]
+include::../api/structs/VkQueryPoolCreateInfo.txt[]
 
   * pname:sType is the type of this structure.
   * pname:pNext is `NULL` or a pointer to an extension-specific structure.
@@ -87,12 +87,12 @@ ename:VK_QUERY_TYPE_PIPELINE_STATISTICS.
     elink:VkQueryPipelineStatisticFlagBits values
 ****
 
-include::{generated}/validity/structs/VkQueryPoolCreateInfo.txt[]
+include::../validity/structs/VkQueryPoolCreateInfo.txt[]
 --
 
 [open,refpage='VkQueryPoolCreateFlags',desc='Reserved for future use',type='flags']
 --
-include::{generated}/api/flags/VkQueryPoolCreateFlags.txt[]
+include::../api/flags/VkQueryPoolCreateFlags.txt[]
 
 tname:VkQueryPoolCreateFlags is a bitmask type for setting a mask, but is
 currently reserved for future use.
@@ -103,7 +103,7 @@ currently reserved for future use.
 
 To destroy a query pool, call:
 
-include::{generated}/api/protos/vkDestroyQueryPool.txt[]
+include::../api/protos/vkDestroyQueryPool.txt[]
 
   * pname:device is the logical device that destroys the query pool.
   * pname:queryPool is the query pool to destroy.
@@ -123,7 +123,7 @@ include::{generated}/api/protos/vkDestroyQueryPool.txt[]
     created, pname:pAllocator must: be `NULL`
 ****
 
-include::{generated}/validity/protos/vkDestroyQueryPool.txt[]
+include::../validity/protos/vkDestroyQueryPool.txt[]
 --
 
 [open,refpage='VkQueryType',desc='Specify the type of queries managed by a query pool',type='enums']
@@ -132,7 +132,7 @@ include::{generated}/validity/protos/vkDestroyQueryPool.txt[]
 Possible values of slink:VkQueryPoolCreateInfo::pname:queryType, specifying
 the type of queries managed by the pool, are:
 
-include::{generated}/api/enums/VkQueryType.txt[]
+include::../api/enums/VkQueryType.txt[]
 
   * ename:VK_QUERY_TYPE_OCCLUSION specifies an <<queries-occlusion,
     occlusion query>>.
@@ -182,8 +182,10 @@ flink:vkCmdCopyQueryPoolResults does not include
 ename:VK_QUERY_RESULT_WAIT_BIT, execution of flink:vkCmdCopyQueryPoolResults
 may: happen-before the results of flink:vkCmdEndQuery are available.
 
-After query pool creation, each query must: be reset before it is used.
+After query pool creation, each query is in an undefined: state and must: be
+reset prior to use.
 Queries must: also be reset between uses.
+Using a query that has not been reset will result in undefined: behavior.
 
 ifdef::VK_VERSION_1_1,VK_KHR_device_group[]
 
@@ -197,9 +199,9 @@ endif::VK_VERSION_1_1,VK_KHR_device_group[]
 [open,refpage='vkCmdResetQueryPool',desc='Reset queries in a query pool',type='protos']
 --
 
-To reset a range of queries in a query pool on a queue, call:
+To reset a range of queries in a query pool, call:
 
-include::{generated}/api/protos/vkCmdResetQueryPool.txt[]
+include::../api/protos/vkCmdResetQueryPool.txt[]
 
   * pname:commandBuffer is the command buffer into which this command will
     be recorded.
@@ -222,42 +224,8 @@ unavailable.
     equal to the number of queries in pname:queryPool
 ****
 
-include::{generated}/validity/protos/vkCmdResetQueryPool.txt[]
+include::../validity/protos/vkCmdResetQueryPool.txt[]
 --
-
-ifdef::VK_EXT_host_query_reset[]
-
-[open,refpage='vkResetQueryPoolEXT',desc='Reset queries in a query pool',type='protos']
---
-
-To reset a range of queries in a query pool on the host, call:
-
-include::{generated}/api/protos/vkResetQueryPoolEXT.txt[]
-
-  * pname:queryPool is the handle of the query pool managing the queries
-    being reset.
-  * pname:firstQuery is the initial query index to reset.
-  * pname:queryCount is the number of queries to reset.
-
-This command sets the status of query indices [eq]#[pname:firstQuery,
-pname:firstQuery {plus} pname:queryCount - 1]# to unavailable.
-
-.Valid Usage
-****
-  * [[VUID-vkResetQueryPoolEXT-None-02665]]
-    The <<features-hostQueryReset,hostQueryReset>> feature must: be enabled
-  * [[VUID-vkResetQueryPoolEXT-firstQuery-02666]]
-    pname:firstQuery must: be less than the number of queries in
-    pname:queryPool
-  * [[VUID-vkResetQueryPoolEXT-firstQuery-02667]]
-    The sum of pname:firstQuery and pname:queryCount must: be less than or
-    equal to the number of queries in pname:queryPool
-****
-
-include::{generated}/validity/protos/vkResetQueryPoolEXT.txt[]
---
-
-endif::VK_EXT_host_query_reset[]
 
 Once queries are reset and ready for use, query commands can: be issued to a
 command buffer.
@@ -307,7 +275,7 @@ endif::VK_VERSION_1_1,VK_KHR_multiview[]
 
 To begin a query, call:
 
-include::{generated}/api/protos/vkCmdBeginQuery.txt[]
+include::../api/protos/vkCmdBeginQuery.txt[]
 
   * pname:commandBuffer is the command buffer into which this command will
     be recorded.
@@ -385,7 +353,7 @@ ifdef::VK_EXT_transform_feedback[]
 endif::VK_EXT_transform_feedback[]
 ****
 
-include::{generated}/validity/protos/vkCmdBeginQuery.txt[]
+include::../validity/protos/vkCmdBeginQuery.txt[]
 --
 
 ifdef::VK_EXT_transform_feedback[]
@@ -395,7 +363,7 @@ ifdef::VK_EXT_transform_feedback[]
 
 To begin an indexed query, call:
 
-include::{generated}/api/protos/vkCmdBeginQueryIndexedEXT.txt[]
+include::../api/protos/vkCmdBeginQueryIndexedEXT.txt[]
 
   * pname:commandBuffer is the command buffer into which this command will
     be recorded.
@@ -476,7 +444,7 @@ endif::VK_VERSION_1_1,VK_KHR_multiview[]
     must: be supported
 ****
 
-include::{generated}/validity/protos/vkCmdBeginQueryIndexedEXT.txt[]
+include::../validity/protos/vkCmdBeginQueryIndexedEXT.txt[]
 --
 endif::VK_EXT_transform_feedback[]
 
@@ -487,7 +455,7 @@ endif::VK_EXT_transform_feedback[]
 Bits which can: be set in flink:vkCmdBeginQuery::pname:flags, specifying
 constraints on the types of queries that can: be performed, are:
 
-include::{generated}/api/enums/VkQueryControlFlagBits.txt[]
+include::../api/enums/VkQueryControlFlagBits.txt[]
 
   * ename:VK_QUERY_CONTROL_PRECISE_BIT specifies the precision of
     <<queries-occlusion, occlusion queries>>.
@@ -496,7 +464,7 @@ include::{generated}/api/enums/VkQueryControlFlagBits.txt[]
 
 [open,refpage='VkQueryControlFlags',desc='Bitmask of VkQueryControlFlagBits',type='flags']
 --
-include::{generated}/api/flags/VkQueryControlFlags.txt[]
+include::../api/flags/VkQueryControlFlags.txt[]
 
 tname:VkQueryControlFlags is a bitmask type for setting a mask of zero or
 more elink:VkQueryControlFlagBits.
@@ -508,7 +476,7 @@ more elink:VkQueryControlFlagBits.
 To end a query after the set of desired draw or dispatch commands is
 executed, call:
 
-include::{generated}/api/protos/vkCmdEndQuery.txt[]
+include::../api/protos/vkCmdEndQuery.txt[]
 
   * pname:commandBuffer is the command buffer into which this command will
     be recorded.
@@ -549,7 +517,7 @@ ifdef::VK_VERSION_1_1,VK_KHR_multiview[]
 endif::VK_VERSION_1_1,VK_KHR_multiview[]
 ****
 
-include::{generated}/validity/protos/vkCmdEndQuery.txt[]
+include::../validity/protos/vkCmdEndQuery.txt[]
 --
 
 ifdef::VK_EXT_transform_feedback[]
@@ -559,7 +527,7 @@ ifdef::VK_EXT_transform_feedback[]
 To end an indexed query after the set of desired draw or dispatch commands
 is recorded, call:
 
-include::{generated}/api/protos/vkCmdEndQueryIndexedEXT.txt[]
+include::../api/protos/vkCmdEndQueryIndexedEXT.txt[]
 
   * pname:commandBuffer is the command buffer into which this command will
     be recorded.
@@ -602,7 +570,7 @@ endif::VK_VERSION_1_1,VK_KHR_multiview[]
     be zero
 ****
 
-include::{generated}/validity/protos/vkCmdEndQueryIndexedEXT.txt[]
+include::../validity/protos/vkCmdEndQueryIndexedEXT.txt[]
 --
 endif::VK_EXT_transform_feedback[]
 
@@ -650,7 +618,7 @@ endif::VK_EXT_transform_feedback[]
 
 To retrieve status and results for a set of queries, call:
 
-include::{generated}/api/protos/vkGetQueryPoolResults.txt[]
+include::../api/protos/vkGetQueryPoolResults.txt[]
 
   * pname:device is the logical device that owns the query pool.
   * pname:queryPool is the query pool managing the queries containing the
@@ -775,7 +743,7 @@ e.g. to read the availability status before reading the results.
     ename:VK_QUERY_RESULT_PARTIAL_BIT
 ****
 
-include::{generated}/validity/protos/vkGetQueryPoolResults.txt[]
+include::../validity/protos/vkGetQueryPoolResults.txt[]
 --
 
 [open,refpage='VkQueryResultFlagBits',desc='Bitmask specifying how and when query results are returned',type='enums']
@@ -785,7 +753,7 @@ Bits which can: be set in flink:vkGetQueryPoolResults::pname:flags and
 flink:vkCmdCopyQueryPoolResults::pname:flags, specifying how and when
 results are returned, are:
 
-include::{generated}/api/enums/VkQueryResultFlagBits.txt[]
+include::../api/enums/VkQueryResultFlagBits.txt[]
 
   * ename:VK_QUERY_RESULT_64_BIT specifies the results will be written as an
     array of 64-bit unsigned integer values.
@@ -802,7 +770,7 @@ include::{generated}/api/enums/VkQueryResultFlagBits.txt[]
 
 [open,refpage='VkQueryResultFlags',desc='Bitmask of VkQueryResultFlagBits',type='flags']
 --
-include::{generated}/api/flags/VkQueryResultFlags.txt[]
+include::../api/flags/VkQueryResultFlags.txt[]
 
 tname:VkQueryResultFlags is a bitmask type for setting a mask of zero or
 more elink:VkQueryResultFlagBits.
@@ -814,7 +782,7 @@ more elink:VkQueryResultFlagBits.
 To copy query statuses and numerical results directly to buffer memory,
 call:
 
-include::{generated}/api/protos/vkCmdCopyQueryPoolResults.txt[]
+include::../api/protos/vkCmdCopyQueryPoolResults.txt[]
 
   * pname:commandBuffer is the command buffer into which this command will
     be recorded.
@@ -916,7 +884,7 @@ before using the results.
     ename:VK_QUERY_RESULT_PARTIAL_BIT
 ****
 
-include::{generated}/validity/protos/vkCmdCopyQueryPoolResults.txt[]
+include::../validity/protos/vkCmdCopyQueryPoolResults.txt[]
 --
 
 
@@ -1007,7 +975,7 @@ for query pools with slink:VkQueryPoolCreateInfo::pname:pipelineStatistics,
 and for secondary command buffers with
 slink:VkCommandBufferInheritanceInfo::pname:pipelineStatistics, are:
 
-include::{generated}/api/enums/VkQueryPipelineStatisticFlagBits.txt[]
+include::../api/enums/VkQueryPipelineStatisticFlagBits.txt[]
 
   * ename:VK_QUERY_PIPELINE_STATISTIC_INPUT_ASSEMBLY_VERTICES_BIT specifies
     that queries managed by the pool will count the number of vertices
@@ -1113,7 +1081,7 @@ fname:vkGetQueryPoolResults).
 
 [open,refpage='VkQueryPipelineStatisticFlags',desc='Bitmask of VkQueryPipelineStatisticFlagBits',type='flags']
 --
-include::{generated}/api/flags/VkQueryPipelineStatisticFlags.txt[]
+include::../api/flags/VkQueryPipelineStatisticFlags.txt[]
 
 tname:VkQueryPipelineStatisticFlags is a bitmask type for setting a mask of
 zero or more elink:VkQueryPipelineStatisticFlagBits.
@@ -1156,7 +1124,7 @@ fname:vkGetPhysicalDeviceProperties.
 
 To request a timestamp, call:
 
-include::{generated}/api/protos/vkCmdWriteTimestamp.txt[]
+include::../api/protos/vkCmdWriteTimestamp.txt[]
 
   * pname:commandBuffer is the command buffer into which the command will be
     recorded.
@@ -1252,7 +1220,7 @@ ifdef::VK_VERSION_1_1,VK_KHR_multiview[]
 endif::VK_VERSION_1_1,VK_KHR_multiview[]
 ****
 
-include::{generated}/validity/protos/vkCmdWriteTimestamp.txt[]
+include::../validity/protos/vkCmdWriteTimestamp.txt[]
 --
 
 ifdef::VK_EXT_transform_feedback[]

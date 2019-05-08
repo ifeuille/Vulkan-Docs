@@ -21,7 +21,7 @@
 # GENOPTS can be e.g. '-noprotect'
 
 PYTHON ?= python3
-SCRIPTS = ../scripts
+PYFILES = genheaders.py reg.py
 GENOPTS =
 
 # Generate Vulkan header from XML. Many other files can be generated
@@ -37,7 +37,6 @@ GENOPTS =
 # clean - remove installed and intermediate files.
 
 INCLUDE     = ../include
-TESTS	    = ../tests
 VULKAN	    = $(INCLUDE)/vulkan
 SRC	    = ../src
 
@@ -45,7 +44,6 @@ SRC	    = ../src
 PLATFORM_HEADERS = \
     $(VULKAN)/vulkan_android.h \
     $(VULKAN)/vulkan_fuchsia.h \
-    $(VULKAN)/vulkan_ggp.h \
     $(VULKAN)/vulkan_ios.h \
     $(VULKAN)/vulkan_macos.h \
     $(VULKAN)/vulkan_vi.h \
@@ -64,11 +62,10 @@ default install: $(HEADERS)
 # Autogenerate vulkan header from XML API description
 
 # Python and XML files on which vulkan_core.h depends
-GENSCRIPT = $(SCRIPTS)/genvk.py
-VKH_DEPENDS = vk.xml $(GENSCRIPT) $(SCRIPTS)/reg.py $(SCRIPTS)/generator.py
+VKH_DEPENDS = vk.xml genvk.py reg.py generator.py
 
 $(HEADERS): $(VKH_DEPENDS)
-	$(PYTHON) $(GENSCRIPT) -registry vk.xml -o $(VULKAN) $(notdir $@)
+	$(PYTHON) genvk.py -registry vk.xml -o $(VULKAN) $(notdir $@)
 
 platform: $(PLATFORM_HEADERS)
 
@@ -82,11 +79,22 @@ validate:
 TESTDEFS = -DVK_USE_PLATFORM_XCB_KHR -DVK_USE_PLATFORM_XLIB_KHR
 
 test: $(HEADERS) $(VULKAN)/vulkan.h $(VULKAN)/vk_platform.h
-	gcc -Wall -std=c99 -c -I$(INCLUDE) -I$(TESTS) $(TESTS)/htest.c
-	gcc -Wall -std=c11 -c -I$(INCLUDE) -I$(TESTS) $(TESTS)/htest.c
-	g++ -Wall -c -std=c++98 -I$(INCLUDE) -I$(TESTS) $(TESTS)/htest.c
-	g++ -Wall -c -std=c++11 -I$(INCLUDE) -I$(TESTS) $(TESTS)/htest.c
-	rm -f $(TESTS)/test.o
+	gcc -Wall -pedantic -std=c99 -c -I$(INCLUDE) test.c
+	g++ -Wall -c -std=c++98 -I$(INCLUDE) test.c
+	g++ -Wall -c -std=c++11 -I$(INCLUDE) test.c
+	gcc $(TESTDEFS) -Wall -pedantic -std=c99 -c -I$(INCLUDE) test.c
+	rm test.o
+
+################################################
+
+# Autogenerate extension loader from XML API description
+# Also generates $(EXTLOADER)/vulkan_ext.h
+# No longer supported.
+
+EXTLOADER   = $(SRC)/ext_loader
+EXTSRCS     = $(EXTLOADER)/vulkan_ext.c
+extloader $(EXTSRCS): $(VKH_DEPENDS)
+	$(PYTHON) genvk.py -registry vk.xml -o $(EXTLOADER) vulkan_ext.c
 
 ################################################
 
